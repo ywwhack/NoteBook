@@ -16,6 +16,7 @@
 		583B8D611CBD13D100E47D6A /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */; };
 		583B8D621CBD13D100E47D6A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D601CBD13D100E47D6A /* Note.swift */; };
 		583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D651CBD207600E47D6A /* AddNoteViewController.swift */; };
+		583B8D681CBD392400E47D6A /* dataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D671CBD392400E47D6A /* dataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		583B8D601CBD13D100E47D6A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		583B8D651CBD207600E47D6A /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		583B8D671CBD392400E47D6A /* dataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				583B8D601CBD13D100E47D6A /* Note.swift */,
 				583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */,
+				583B8D671CBD392400E47D6A /* dataModel.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -170,6 +173,7 @@
 				583B8D611CBD13D100E47D6A /* Note+CoreDataProperties.swift in Sources */,
 				583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */,
 				583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */,
+				583B8D681CBD392400E47D6A /* dataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

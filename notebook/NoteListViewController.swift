@@ -11,7 +11,7 @@ import CoreData
 
 class NoteListViewController: UITableViewController {
 
-  var managedObjectContext: NSManagedObjectContext!
+  var dataModel: DataModel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +23,7 @@ class NoteListViewController: UITableViewController {
     
     let fetchRequest = NSFetchRequest(entityName: "Note")
     do {
-      let results = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Note]
+      let results = try dataModel.managedObjectContext.executeFetchRequest(fetchRequest) as! [Note]
       results.forEach { note in
         print(note.message)
         print(NSDate(timeIntervalSince1970: note.createAt))
@@ -38,7 +38,7 @@ class NoteListViewController: UITableViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "AddNote" {
       let addNoteVC = segue.destinationViewController as! AddNoteViewController
-      addNoteVC.managedObjectContext = managedObjectContext
+      addNoteVC.dataModel = dataModel
     }
   }
   

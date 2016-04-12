@@ -75,6 +75,38 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="z4Z-qg-nwE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="64" id="ftf-ux-Cxg">
+                                        <rect key="frame" x="0.0" y="299" width="600" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ftf-ux-Cxg" id="Fcr-Zd-8w8">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lO-dt-9Vd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                                </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="YyI-IE-bnM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="PNv-fq-hYN"/>
+                                                        <constraint firstAttribute="width" constant="64" id="Q2E-5Z-b1B"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YyI-IE-bnM" firstAttribute="leading" secondItem="Fcr-Zd-8w8" secondAttribute="leading" id="J7r-pW-2oJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="8lO-dt-9Vd" secondAttribute="trailing" id="dgc-hD-Qht"/>
+                                                <constraint firstItem="YyI-IE-bnM" firstAttribute="top" secondItem="Fcr-Zd-8w8" secondAttribute="top" id="ee3-8V-nR9"/>
+                                                <constraint firstAttribute="bottom" secondItem="8lO-dt-9Vd" secondAttribute="bottom" id="oCH-5o-2o8"/>
+                                                <constraint firstItem="8lO-dt-9Vd" firstAttribute="top" secondItem="Fcr-Zd-8w8" secondAttribute="top" id="rU2-6K-yeB"/>
+                                                <constraint firstItem="8lO-dt-9Vd" firstAttribute="leading" secondItem="Fcr-Zd-8w8" secondAttribute="leading" id="zbf-Vh-g9n"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="AbR-zH-xqf" id="Xwj-Qd-hnd"/>
@@ -94,6 +126,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="YyI-IE-bnM" id="aRn-VB-0Ku"/>
                         <outlet property="messageTextView" destination="rpU-NC-PHf" id="Opj-2y-R7n"/>
                     </connections>
                 </tableViewController>
@@ -120,4 +153,7 @@
             <point key="canvasLocation" x="592" y="503"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add" width="97" height="97"/>
+    </resources>
 </document>

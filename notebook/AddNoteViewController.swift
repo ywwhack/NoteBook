@@ -14,15 +14,14 @@ class AddNoteViewController: UITableViewController {
   var managedObjectContext: NSManagedObjectContext!
   
   @IBOutlet weak var messageTextView: UITextView!
+  @IBOutlet weak var imageView: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    imageView.userInteractionEnabled = true
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
+    imageView.addGestureRecognizer(tapGestureRecognizer)
   }
   
   @IBAction func cancel(sender: UIBarButtonItem) {
@@ -33,6 +32,7 @@ class AddNoteViewController: UITableViewController {
     navigationController?.popViewControllerAnimated(true)
     let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: managedObjectContext) as! Note
     newNote.message = messageTextView.text
+    newNote.createAt = NSDate().timeIntervalSince1970
     do {
       try managedObjectContext.save()
     }catch {
@@ -41,4 +41,26 @@ class AddNoteViewController: UITableViewController {
     }
   }
   
+  func imageViewDidTap() {
+    let imagePicker = UIImagePickerController()
+    imagePicker.delegate = self
+    presentViewController(imagePicker, animated: true, completion: nil)
+  }
+  
+  // MARK: - UITableView Delegate
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
+}
+
+// MARK: - UIImagePickerController Delegate
+extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    dismissViewControllerAnimated(true, completion: nil)
+  }
 }

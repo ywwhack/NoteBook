@@ -16,21 +16,22 @@ class NoteListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
     let fetchRequest = NSFetchRequest(entityName: "Note")
     do {
       let results = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Note]
-      results.forEach{ note in
+      results.forEach { note in
         print(note.message)
+        print(NSDate(timeIntervalSince1970: note.createAt))
       }
     }catch {
       print("Can't fetch result, error \(error)")
       fatalError()
     }
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   // MARK: - Segue

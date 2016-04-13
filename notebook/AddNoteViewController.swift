@@ -12,16 +12,18 @@ import CoreData
 class AddNoteViewController: UITableViewController {
   
   var dataModel: DataModel!
+  var images = [String]()
   
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var collectionView: UICollectionView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    imageView.userInteractionEnabled = true
-    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
-    imageView.addGestureRecognizer(tapGestureRecognizer)
+    
+    
+    // collectionView.reloadData()
   }
   
   @IBAction func cancel(sender: UIBarButtonItem) {
@@ -62,6 +64,9 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
     do {
       let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent("1.jpg")
       try data?.writeToURL(url, options: .AtomicWrite)
+      images.append(url.path!)
+      collectionView.reloadData()
+      print(images)
     }catch {
       print("Save image file error \(error)")
       fatalError()
@@ -71,5 +76,29 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     dismissViewControllerAnimated(true, completion: nil)
+  }
+}
+
+// MARK: - UICollectionView Datasource
+extension AddNoteViewController: UICollectionViewDataSource {
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    // The addition imageView is `Add Image`
+    return images.count + 1
+  }
+  
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
+    
+    let imageView = cell.viewWithTag(1000) as! UIImageView
+    if indexPath.row == images.count { // `Add Image`
+      imageView.image = UIImage(named: "add")
+      imageView.userInteractionEnabled = true
+      let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
+      imageView.addGestureRecognizer(tapGestureRecognizer)
+    }else {
+      imageView.image = UIImage(data: NSData(contentsOfFile: images[indexPath.row])!)
+    }
+  
+    return cell
   }
 }

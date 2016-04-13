@@ -15,7 +15,6 @@ class AddNoteViewController: UITableViewController {
   var images = [String]()
   
   @IBOutlet weak var messageTextView: UITextView!
-  @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var collectionView: UICollectionView!
   
   override func viewDidLoad() {
@@ -54,15 +53,29 @@ class AddNoteViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
+  // MARK: - Utils
+  func parseQuery(query: String) -> [String: String] {
+    let queryComponents = query.componentsSeparatedByString("&")
+    return queryComponents.reduce([String:String]()) { dict, component -> [String: String] in
+      var newDict = dict
+      let dictComponent = component.componentsSeparatedByString("=")
+      newDict[dictComponent[0]] = dictComponent[1]
+      return newDict
+    }
+  }
+  
 }
 
 // MARK: - UIImagePickerController Delegate
 extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-    print(image)
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    let query = (info[UIImagePickerControllerReferenceURL] as! NSURL).query
+    let queryObject = parseQuery(query!)
+    print(queryObject)
+    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let data = UIImageJPEGRepresentation(image, 0.9)
     do {
-      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent("1.jpg")
+      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(queryObject["id"]!)
       try data?.writeToURL(url, options: .AtomicWrite)
       images.append(url.path!)
       collectionView.reloadData()
@@ -90,7 +103,7 @@ extension AddNoteViewController: UICollectionViewDataSource {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
     
     let imageView = cell.viewWithTag(1000) as! UIImageView
-    if indexPath.row == images.count { // `Add Image`
+    if indexPath.row == images.count { // `Add Image` with tap gesture
       imageView.image = UIImage(named: "add")
       imageView.userInteractionEnabled = true
       let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))

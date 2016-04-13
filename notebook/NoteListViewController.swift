@@ -12,6 +12,7 @@ import CoreData
 class NoteListViewController: UITableViewController {
 
   var dataModel: DataModel!
+  var notes: [Note]!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,12 +22,13 @@ class NoteListViewController: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    let notes = dataModel.fetchNotes()
-    notes.forEach { note in
-      print(note.message)
-      print(NSDate(timeIntervalSince1970: note.createAt))
-      print(note.images)
-    }
+    notes = dataModel.fetchNotes()
+    tableView.reloadData()
+//    notes.forEach { note in
+//      print(note.message)
+//      print(NSDate(timeIntervalSince1970: note.createAt))
+//      print(note.images)
+//    }
   }
   
   // MARK: - Segue
@@ -34,7 +36,27 @@ class NoteListViewController: UITableViewController {
     if segue.identifier == "AddNote" {
       let addNoteVC = segue.destinationViewController as! AddNoteViewController
       addNoteVC.dataModel = dataModel
+    }else if segue.identifier == "ShowNote" {
+      guard let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) else {
+        return
+      }
+      let note = notes[indexPath.row]
+      let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
+      noteDetailVC.message = note.message
+      noteDetailVC.images = note.images as! [String]
+      noteDetailVC.dataModel = dataModel
     }
+  }
+  
+  // MARK: - UITableView Datasource
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return notes.count
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("NoteListCell", forIndexPath: indexPath)
+    cell.textLabel?.text = notes[indexPath.row].message
+    return cell
   }
   
 }

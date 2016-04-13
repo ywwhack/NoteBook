@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */; };
 		583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4A1CBD128800E47D6A /* AppDelegate.swift */; };
 		583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */; };
 		583B8D501CBD128800E47D6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 583B8D4E1CBD128800E47D6A /* Main.storyboard */; };
@@ -17,9 +18,11 @@
 		583B8D621CBD13D100E47D6A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D601CBD13D100E47D6A /* Note.swift */; };
 		583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D651CBD207600E47D6A /* AddNoteViewController.swift */; };
 		583B8D681CBD392400E47D6A /* dataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D671CBD392400E47D6A /* dataModel.swift */; };
+		583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+nameInDocuments.swift"; sourceTree = "<group>"; };
 		583B8D471CBD128800E47D6A /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		583B8D4A1CBD128800E47D6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 		583B8D601CBD13D100E47D6A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		583B8D651CBD207600E47D6A /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		583B8D671CBD392400E47D6A /* dataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataModel.swift; sourceTree = "<group>"; };
+		583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		583A0E321CBE260900F44FAC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		583B8D3E1CBD128700E47D6A = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +76,7 @@
 		583B8D491CBD128800E47D6A /* notebook */ = {
 			isa = PBXGroup;
 			children = (
+				583A0E321CBE260900F44FAC /* Utils */,
 				583B8D641CBD204600E47D6A /* Controller */,
 				583B8D631CBD13D900E47D6A /* Model */,
 				583B8D4A1CBD128800E47D6A /* AppDelegate.swift */,
@@ -92,6 +105,7 @@
 			children = (
 				583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */,
 				583B8D651CBD207600E47D6A /* AddNoteViewController.swift */,
+				583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -168,6 +182,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				583B8D621CBD13D100E47D6A /* Note.swift in Sources */,
+				583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */,
+				583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */,
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,
 				583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */,
 				583B8D611CBD13D100E47D6A /* Note+CoreDataProperties.swift in Sources */,
@@ -323,6 +339,7 @@
 				583B8D5E1CBD128800E47D6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

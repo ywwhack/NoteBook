@@ -69,9 +69,10 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
     let data = UIImageJPEGRepresentation(image, 0.9)
     
     do {
-      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent("\(queryObject["id"]!).jpg")
+      let imageFileName = "\(queryObject["id"]!).jpg"
+      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
       try data?.writeToURL(url, options: .AtomicWrite)
-      images.append(url.path!)
+      images.append(imageFileName)
       collectionView.reloadData()
     }catch {
       print("Save image file error \(error)")
@@ -103,7 +104,7 @@ extension AddNoteViewController: UICollectionViewDataSource {
       let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
       imageView.addGestureRecognizer(tapGestureRecognizer)
     }else {
-      imageView.image = UIImage(data: NSData(contentsOfFile: images[indexPath.row])!)
+      imageView.image = UIImage.nameInDocuments(images[indexPath.row])
     }
   
     return cell

@@ -21,6 +21,19 @@ class NoteDetailViewController: UITableViewController {
     super.viewDidLoad()
     
     messageTextView.text = message
+    messageTextView.translatesAutoresizingMaskIntoConstraints = false
+    // FIXME: height constraint unsatisfied
+    messageTextView.heightAnchor.constraintEqualToConstant(heightForMessage(message)).active = true
+    messageTextView.setNeedsLayout()
+  }
+  
+  func heightForMessage(message: String) -> CGFloat {
+    return (message as NSString).boundingRectWithSize(CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 1000) , options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: nil).height
+  }
+  
+  // MARK: - UITableView Datasource
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
   }
   
 }

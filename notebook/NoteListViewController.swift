@@ -21,16 +21,11 @@ class NoteListViewController: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    let fetchRequest = NSFetchRequest(entityName: "Note")
-    do {
-      let results = try dataModel.managedObjectContext.executeFetchRequest(fetchRequest) as! [Note]
-      results.forEach { note in
-        print(note.message)
-        print(NSDate(timeIntervalSince1970: note.createAt))
-      }
-    }catch {
-      print("Can't fetch result, error \(error)")
-      fatalError()
+    let notes = dataModel.fetchNotes()
+    notes.forEach { note in
+      print(note.message)
+      print(NSDate(timeIntervalSince1970: note.createAt))
+      print(note.images)
     }
   }
   

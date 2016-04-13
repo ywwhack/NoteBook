@@ -20,9 +20,6 @@ class AddNoteViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
-    
-    // collectionView.reloadData()
   }
   
   @IBAction func cancel(sender: UIBarButtonItem) {
@@ -34,12 +31,9 @@ class AddNoteViewController: UITableViewController {
     let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: dataModel.managedObjectContext) as! Note
     newNote.message = messageTextView.text
     newNote.createAt = NSDate().timeIntervalSince1970
-    do {
-      try dataModel.managedObjectContext.save()
-    }catch {
-      print("Can't save new note, error \(error)")
-      fatalError()
-    }
+    newNote.images = images
+    
+    dataModel.saveContext()
   }
   
   func imageViewDidTap() {
@@ -71,19 +65,19 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     let query = (info[UIImagePickerControllerReferenceURL] as! NSURL).query
     let queryObject = parseQuery(query!)
-    print(queryObject)
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let data = UIImageJPEGRepresentation(image, 0.9)
+    
     do {
-      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(queryObject["id"]!)
+      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent("\(queryObject["id"]!).jpg")
       try data?.writeToURL(url, options: .AtomicWrite)
       images.append(url.path!)
       collectionView.reloadData()
-      print(images)
     }catch {
       print("Save image file error \(error)")
       fatalError()
     }
+    
     dismissViewControllerAnimated(true, completion: nil)
   }
   

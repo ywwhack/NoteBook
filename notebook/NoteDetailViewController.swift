@@ -21,10 +21,11 @@ class NoteDetailViewController: UITableViewController {
     super.viewDidLoad()
     
     messageTextView.text = message
-    messageTextView.translatesAutoresizingMaskIntoConstraints = false
-    // FIXME: height constraint unsatisfied
-    messageTextView.heightAnchor.constraintEqualToConstant(heightForMessage(message)).active = true
-    messageTextView.setNeedsLayout()
+    messageTextView.constraints.forEach { constraint in
+      if constraint.firstAttribute == .Height {
+        constraint.constant = heightForMessage(message)
+      }
+    }
   }
   
   func heightForMessage(message: String) -> CGFloat {

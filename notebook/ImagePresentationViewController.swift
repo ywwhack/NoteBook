@@ -21,7 +21,6 @@ class ImagePresentationViewController: UIViewController {
   }
   
   @IBAction func back(sender: UITapGestureRecognizer) {
-    print("tap")
     dismissViewControllerAnimated(true, completion: nil)
   }
   

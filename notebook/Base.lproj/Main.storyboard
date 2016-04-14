@@ -174,18 +174,18 @@
         <scene sceneID="qmg-rk-OuH">
             <objects>
                 <tableViewController id="9AQ-LT-BMi" customClass="NoteDetailViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WA9-p6-OsI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WA9-p6-OsI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="o55-fh-9JR">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteDetailCell" rowHeight="204" id="kTH-Cp-hnG">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="204"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteDetailCell" rowHeight="538" id="kTH-Cp-hnG">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="538"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kTH-Cp-hnG" id="kVk-Ci-Gv8">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="203.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Message goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgN-Dt-KKy">
@@ -196,7 +196,7 @@
                                                         <constraint firstAttribute="height" constant="128" id="XjJ-eR-bYZ"/>
                                                         <constraint firstAttribute="height" constant="50" id="fma-Mf-Cbx"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -206,27 +206,27 @@
                                                     </variation>
                                                 </textView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-7u-wlJ">
-                                                    <rect key="frame" x="20" y="68" width="572" height="127"/>
+                                                    <rect key="frame" x="20" y="68" width="572" height="462"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="Qk6-pT-jGS"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WvG-W1-PpL">
-                                                        <size key="itemSize" width="50" height="50"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="WvG-W1-PpL">
+                                                        <size key="itemSize" width="100" height="100"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteDetailImageCell" id="6wO-kx-D1G">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k7D-MA-6Ir">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

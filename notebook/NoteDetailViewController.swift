@@ -21,6 +21,7 @@ class NoteDetailViewController: UITableViewController {
     super.viewDidLoad()
     
     messageTextView.text = message
+    messageTextView.font = UIFont.systemFontOfSize(16)
     messageTextView.constraints.forEach { constraint in
       if constraint.firstAttribute == .Height {
         constraint.constant = heightForMessage(message)
@@ -29,7 +30,7 @@ class NoteDetailViewController: UITableViewController {
   }
   
   func heightForMessage(message: String) -> CGFloat {
-    return (message as NSString).boundingRectWithSize(CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 1000) , options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: nil).height
+    return (message as NSString).boundingRectWithSize(CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 1000) , options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16)], context: nil).height
   }
   
   // MARK: - UITableView Datasource
@@ -48,6 +49,7 @@ class NoteDetailViewController: UITableViewController {
   
 }
 
+// MARK: - UIColloctionView Datasource
 extension NoteDetailViewController: UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return imageNames.count

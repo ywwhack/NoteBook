@@ -84,4 +84,10 @@ class DataModel {
       fatalError()
     }
   }
+  
+  // MARK: - Mock User Data
+  func fetchUserInfo() -> User {
+    return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
+  }
+  
 }

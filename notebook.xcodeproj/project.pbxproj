@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */; };
+		581F75571CBF795B00DAB7A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75561CBF795B00DAB7A5 /* User.swift */; };
+		581F75591CBF79B000DAB7A5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75581CBF79B000DAB7A5 /* Group.swift */; };
+		581F755B1CBF7B6600DAB7A5 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */; };
 		583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */; };
 		583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4A1CBD128800E47D6A /* AppDelegate.swift */; };
 		583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */; };
@@ -24,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePresentationViewController.swift; sourceTree = "<group>"; };
+		581F75561CBF795B00DAB7A5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		581F75581CBF79B000DAB7A5 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+nameInDocuments.swift"; sourceTree = "<group>"; };
 		583B8D471CBD128800E47D6A /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		583B8D4A1CBD128800E47D6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 				583B8D601CBD13D100E47D6A /* Note.swift */,
 				583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */,
 				583B8D671CBD392400E47D6A /* dataModel.swift */,
+				581F75561CBF795B00DAB7A5 /* User.swift */,
+				581F75581CBF79B000DAB7A5 /* Group.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -109,6 +117,7 @@
 				583B8D651CBD207600E47D6A /* AddNoteViewController.swift */,
 				583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */,
 				581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */,
+				581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -186,7 +195,9 @@
 			files = (
 				583B8D621CBD13D100E47D6A /* Note.swift in Sources */,
 				583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */,
+				581F755B1CBF7B6600DAB7A5 /* FriendsViewController.swift in Sources */,
 				583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */,
+				581F75591CBF79B000DAB7A5 /* Group.swift in Sources */,
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,
 				583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */,
 				581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */,
@@ -194,6 +205,7 @@
 				583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */,
 				583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */,
 				583B8D681CBD392400E47D6A /* dataModel.swift in Sources */,
+				581F75571CBF795B00DAB7A5 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

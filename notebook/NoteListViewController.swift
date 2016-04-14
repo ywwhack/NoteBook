@@ -43,7 +43,7 @@ class NoteListViewController: UITableViewController {
       let note = notes[indexPath.row]
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
       noteDetailVC.message = note.message
-      noteDetailVC.images = note.images as! [String]
+      noteDetailVC.imageNames = note.images as! [String]
       noteDetailVC.dataModel = dataModel
     }
   }

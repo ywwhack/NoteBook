@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */; };
 		583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */; };
 		583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4A1CBD128800E47D6A /* AppDelegate.swift */; };
 		583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */; };
@@ -22,20 +23,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePresentationViewController.swift; sourceTree = "<group>"; };
 		583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+nameInDocuments.swift"; sourceTree = "<group>"; };
 		583B8D471CBD128800E47D6A /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		583B8D4A1CBD128800E47D6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
+		583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoteListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		583B8D4F1CBD128800E47D6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		583B8D521CBD128800E47D6A /* notebook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = notebook.xcdatamodel; sourceTree = "<group>"; };
 		583B8D541CBD128800E47D6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		583B8D571CBD128800E47D6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		583B8D591CBD128800E47D6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		583B8D5F1CBD13D100E47D6A /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		583B8D601CBD13D100E47D6A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		583B8D651CBD207600E47D6A /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		583B8D651CBD207600E47D6A /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddNoteViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		583B8D671CBD392400E47D6A /* dataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataModel.swift; sourceTree = "<group>"; };
-		583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
+		583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoteDetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */,
 				583B8D651CBD207600E47D6A /* AddNoteViewController.swift */,
 				583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */,
+				581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */,
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,
 				583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */,
+				581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */,
 				583B8D611CBD13D100E47D6A /* Note+CoreDataProperties.swift in Sources */,
 				583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */,
 				583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */,

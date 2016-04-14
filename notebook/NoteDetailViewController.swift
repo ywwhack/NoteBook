@@ -13,7 +13,7 @@ class NoteDetailViewController: UITableViewController {
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var images: [String]!
+  var imageNames: [String]!
   var message: String!
   var dataModel: DataModel!
   
@@ -37,17 +37,26 @@ class NoteDetailViewController: UITableViewController {
     return 1
   }
   
+  // MARK: - Segue
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowImage" {
+      let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
+      let imagePresentationVC = segue.destinationViewController as! ImagePresentationViewController
+      imagePresentationVC.imageName = imageNames[indexPath.row]
+    }
+  }
+  
 }
 
 extension NoteDetailViewController: UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return images.count
+    return imageNames.count
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("NoteDetailImageCell", forIndexPath: indexPath)
     let imageView = cell.viewWithTag(1000) as! UIImageView
-    imageView.image = UIImage.nameInDocuments(images[indexPath.row])
+    imageView.image = UIImage.nameInDocuments(imageNames[indexPath.row])
     return cell
   }
 }

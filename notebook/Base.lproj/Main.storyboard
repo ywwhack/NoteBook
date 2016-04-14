@@ -225,7 +225,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k7D-MA-6Ir">
+                                                                    <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k7D-MA-6Ir">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -237,6 +237,9 @@
                                                                 <constraint firstItem="k7D-MA-6Ir" firstAttribute="top" secondItem="6wO-kx-D1G" secondAttribute="top" id="kaw-Me-PSz"/>
                                                                 <constraint firstAttribute="bottom" secondItem="k7D-MA-6Ir" secondAttribute="bottom" id="xPv-18-8JK"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <segue destination="C96-fc-d2S" kind="presentation" identifier="ShowImage" id="9yq-Oh-XYd"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <variation key="default">
@@ -283,6 +286,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9k-Ur-vWK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2127" y="929"/>
+        </scene>
+        <!--Image Presentation View Controller-->
+        <scene sceneID="rXs-2I-n03">
+            <objects>
+                <viewController id="C96-fc-d2S" customClass="ImagePresentationViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bob-t8-cNe"/>
+                        <viewControllerLayoutGuide type="bottom" id="3ac-Yc-69R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uh9-py-lYU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QYt-Ly-BLs">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="LmR-cE-B3H" appends="YES" id="Dau-H2-vXa"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QYt-Ly-BLs" firstAttribute="leading" secondItem="uh9-py-lYU" secondAttribute="leading" id="1LU-V1-2BG"/>
+                            <constraint firstItem="3ac-Yc-69R" firstAttribute="top" secondItem="QYt-Ly-BLs" secondAttribute="bottom" id="fsc-T8-1pY"/>
+                            <constraint firstItem="QYt-Ly-BLs" firstAttribute="top" secondItem="Bob-t8-cNe" secondAttribute="bottom" id="p9M-mA-KBj"/>
+                            <constraint firstAttribute="trailing" secondItem="QYt-Ly-BLs" secondAttribute="trailing" id="ri8-ME-Z8c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="QYt-Ly-BLs" id="7Mt-Ie-Hu6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="emq-hn-AXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LmR-cE-B3H">
+                    <connections>
+                        <action selector="back:" destination="C96-fc-d2S" id="RfO-Ev-8l0"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2790" y="929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gCK-ep-jVH">

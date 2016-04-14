@@ -12,7 +12,7 @@ import CoreData
 class AddNoteViewController: UITableViewController {
   
   var dataModel: DataModel!
-  var images = [String]()
+  var imageNames = [String]()
   
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var collectionView: UICollectionView!
@@ -31,7 +31,7 @@ class AddNoteViewController: UITableViewController {
     let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: dataModel.managedObjectContext) as! Note
     newNote.message = messageTextView.text
     newNote.createAt = NSDate().timeIntervalSince1970
-    newNote.images = images
+    newNote.images = imageNames
     
     dataModel.saveContext()
   }
@@ -72,7 +72,7 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
       let imageFileName = "\(queryObject["id"]!).jpg"
       let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
       try data?.writeToURL(url, options: .AtomicWrite)
-      images.append(imageFileName)
+      imageNames.append(imageFileName)
       collectionView.reloadData()
     }catch {
       print("Save image file error \(error)")
@@ -91,20 +91,20 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension AddNoteViewController: UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     // The addition imageView is `Add Image`
-    return images.count + 1
+    return imageNames.count + 1
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
     
     let imageView = cell.viewWithTag(1000) as! UIImageView
-    if indexPath.row == images.count { // `Add Image` with tap gesture
+    if indexPath.row == imageNames.count { // `Add Image` with tap gesture
       imageView.image = UIImage(named: "add")
       imageView.userInteractionEnabled = true
       let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
       imageView.addGestureRecognizer(tapGestureRecognizer)
     }else {
-      imageView.image = UIImage.nameInDocuments(images[indexPath.row])
+      imageView.image = UIImage.nameInDocuments(imageNames[indexPath.row])
     }
   
     return cell

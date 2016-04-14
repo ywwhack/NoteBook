@@ -189,7 +189,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Message goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgN-Dt-KKy">
-                                                    <rect key="frame" x="20" y="8" width="572" height="50"/>
+                                                    <rect key="frame" x="23" y="8" width="569" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="RM8-iQ-o89"/>
@@ -206,7 +206,7 @@
                                                     </variation>
                                                 </textView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-7u-wlJ">
-                                                    <rect key="frame" x="20" y="68" width="572" height="462"/>
+                                                    <rect key="frame" x="23" y="68" width="569" height="462"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="Qk6-pT-jGS"/>
@@ -254,7 +254,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="topMargin" secondItem="XgN-Dt-KKy" secondAttribute="top" id="0mU-X3-4n5"/>
-                                                <constraint firstItem="XgN-Dt-KKy" firstAttribute="leading" secondItem="kVk-Ci-Gv8" secondAttribute="leadingMargin" constant="12" id="9Pq-iO-MVh"/>
+                                                <constraint firstItem="XgN-Dt-KKy" firstAttribute="leading" secondItem="kVk-Ci-Gv8" secondAttribute="leadingMargin" constant="15" id="9Pq-iO-MVh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XgN-Dt-KKy" secondAttribute="trailing" id="Rh2-J7-4N6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Lja-7u-wlJ" secondAttribute="bottom" id="bck-cJ-8E3"/>
                                                 <constraint firstItem="Lja-7u-wlJ" firstAttribute="trailing" secondItem="XgN-Dt-KKy" secondAttribute="trailing" id="dSW-es-Hd7"/>
@@ -347,7 +347,7 @@
             </objects>
             <point key="canvasLocation" x="1404" y="-277"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Friends-->
         <scene sceneID="hPn-cU-ce9">
             <objects>
                 <tableViewController id="zFI-Mk-458" customClass="FriendsViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
@@ -373,13 +373,26 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddFriendCell" id="yDO-Yu-qeD">
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yDO-Yu-qeD" id="VZM-rz-RNt">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhI-Zh-Cbu">
+                                            <rect key="frame" x="15" y="11" width="22" height="22"/>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="zFI-Mk-458" id="mUu-zO-RdX"/>
                             <outlet property="delegate" destination="zFI-Mk-458" id="snk-fS-ALu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Vn1-R4-GUB"/>
+                    <navigationItem key="navigationItem" title="Friends" id="Vn1-R4-GUB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhE-r6-zAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

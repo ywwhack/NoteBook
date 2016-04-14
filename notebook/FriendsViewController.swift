@@ -21,7 +21,7 @@ class FriendsViewController: UITableViewController {
     friends = userInfo.friends
     groups = userInfo.groups
   }
-  
+
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -29,16 +29,23 @@ class FriendsViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return section == 0 ? friends.count : groups[section - 1].friends.count
+    return section == 0 ? friends.count : groups[section - 1].friends.count + 1
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
+    let cell: UITableViewCell
     
     if indexPath.section == 0 {
+      cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
       cell.textLabel?.text = friends[indexPath.row]
     }else {
-      cell.textLabel?.text = groups[indexPath.section - 1].friends[indexPath.row]
+      let groupFriends = groups[indexPath.section - 1].friends
+      if indexPath.row == groupFriends.count {
+        cell = tableView.dequeueReusableCellWithIdentifier("AddFriendCell", forIndexPath: indexPath)
+      }else {
+        cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
+        cell.textLabel?.text = groupFriends[indexPath.row]
+      }
     }
     
     return cell

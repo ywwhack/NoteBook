@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FriendsViewController: UITableViewController {
   
@@ -21,6 +22,9 @@ class FriendsViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    // congfigure UI
+    loginView.backgroundColor = UIColor.clearColor()
     
     if let userInfo = dataModel.fetchUserInfo() {
       friends = userInfo.friends
@@ -35,7 +39,28 @@ class FriendsViewController: UITableViewController {
   }
   
   @IBAction func Login(sender: UIButton) {
-    
+    if let username = usernameTextFiled.text, password = passwordTextFiled.text {
+      Alamofire
+        .request(.POST, "http://localhost:3000/login", parameters: ["username": username, "password": password])
+        .responseJSON { response in
+          if let result = response.result.value as? [String: String] {
+            if result["validation"] == "success" {
+              print("Login")
+              self.dataModel.username = username
+              self.updateUI()
+            }else {
+              print("Your info invalid")
+            }
+          }
+        }
+    }
+  }
+  
+  func updateUI() {
+    if dataModel.username != nil {
+      loginView.hidden = true
+      tableView.reloadData()
+    }
   }
   
   // MARK: - Table view data source

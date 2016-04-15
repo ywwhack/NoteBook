@@ -93,13 +93,28 @@ class DataModel {
       .responseJSON { response in
         print(response.result.value)
       }
-    return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
-    // return nil
+    // return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
+    return nil
   }
   
   func matchedUsersWithText(text: String) -> [String]? {
     let users = ["cooli", "mark", "ealon", "kobe"]
     return users
+  }
+  
+  // MARK: - NSUserDefaults
+  lazy var userDefaults: NSUserDefaults = {
+    return NSUserDefaults.standardUserDefaults()
+  }()
+  
+  var username: String? {
+    get {
+      return userDefaults.valueForKey("Username") as? String
+    }
+    
+    set {
+      userDefaults.setObject(newValue, forKey: "Username")
+    }
   }
   
 }

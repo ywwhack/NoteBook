@@ -21,7 +21,7 @@ class FriendsViewController: UITableViewController {
     friends = userInfo.friends
     groups = userInfo.groups
   }
-
+  
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -42,6 +42,8 @@ class FriendsViewController: UITableViewController {
       let groupFriends = groups[indexPath.section - 1].friends
       if indexPath.row == groupFriends.count {
         cell = tableView.dequeueReusableCellWithIdentifier("AddFriendCell", forIndexPath: indexPath)
+      }else if indexPath.row > groupFriends.count {
+        cell = tableView.dequeueReusableCellWithIdentifier("ComfirmFriendCell", forIndexPath: indexPath)
       }else {
         cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
         cell.textLabel?.text = groupFriends[indexPath.row]
@@ -58,6 +60,21 @@ class FriendsViewController: UITableViewController {
   // MARK: - UITableView Delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
+  // MARK: - Segue
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "AddFriendToGroup" {
+      let addGroupFriendVC = segue.destinationViewController as! AddGroupFriendViewController
+      let indexPath = tableView.indexPathForCell(sender?.superview?!.superview as! UITableViewCell)!
+      let groupIndex = indexPath.section - 1
+      let groupFriends = groups[groupIndex].friends
+      let notContainsFriends = friends.filter { friend in
+        return !groupFriends.contains(friend)
+      }
+      
+      addGroupFriendVC.friends = notContainsFriends
+    }
   }
   
 }

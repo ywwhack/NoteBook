@@ -59,7 +59,6 @@ class AddFriendViewController: UITableViewController {
   
 }
 
-
 extension AddFriendViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     searchBar.resignFirstResponder()

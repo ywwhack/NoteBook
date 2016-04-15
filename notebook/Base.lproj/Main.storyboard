@@ -332,7 +332,7 @@
         <scene sceneID="gCK-ep-jVH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b5Q-zO-GIO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notes" id="zGH-sV-CkF"/>
+                    <tabBarItem key="tabBarItem" title="Notes" image="note" id="zGH-sV-CkF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uAI-2W-cCf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -537,7 +537,7 @@
         <scene sceneID="Wge-nz-fTt">
             <objects>
                 <navigationController id="edI-lp-YDg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="Eyg-wT-bQJ"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="user" id="Eyg-wT-bQJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yat-Tx-a0D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -571,5 +571,7 @@
     </scenes>
     <resources>
         <image name="add" width="97" height="97"/>
+        <image name="note" width="30" height="30"/>
+        <image name="user" width="30" height="30"/>
     </resources>
 </document>

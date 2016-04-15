@@ -71,6 +71,8 @@ class FriendsViewController: UITableViewController {
       let groupFriends = groups[groupIndex].friends
       let notContainsFriends = friends.filter { friend in
         return !groupFriends.contains(friend)
+      }.map { (friendName) -> Friend in
+        return Friend(name: friendName, selected: false)
       }
       
       addGroupFriendVC.friends = notContainsFriends

@@ -10,7 +10,7 @@ import UIKit
 
 class AddGroupFriendViewController: UITableViewController {
   
-  var friends: [String]!
+  var friends: [Friend]!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,15 +27,24 @@ class AddGroupFriendViewController: UITableViewController {
     return friends.count
   }
   
-  
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("AddFriendToGroupCell", forIndexPath: indexPath)
     
-    cell.textLabel?.text = friends[indexPath.row]
-    cell.accessoryType = .Checkmark
+    let friendInfo = friends[indexPath.row]
+    cell.textLabel?.text = friendInfo.name
+    if friendInfo.selected {
+      cell.accessoryType = .Checkmark
+    }else {
+      cell.accessoryType = .None
+    }
     
     return cell
   }
   
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let friendInfo = friends[indexPath.row]
+    friends[indexPath.row].selected = !friendInfo.selected
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+  }
   
 }

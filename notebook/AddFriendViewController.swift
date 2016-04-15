@@ -10,8 +10,14 @@ import UIKit
 
 class AddFriendViewController: UITableViewController {
   
+  enum SearchResult {
+    case NotSearched
+    case NotFound
+    case matchedUsers([String])
+  }
+  
   var dataModel: DataModel!
-  var matchedUsers: [String]?
+  var searchResult: SearchResult = .NotSearched
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,10 +31,10 @@ class AddFriendViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let matchedUsers = matchedUsers {
-      return matchedUsers.count
-    }else {
-      return 1
+    switch searchResult {
+    case .NotSearched: return 0
+    case .NotFound: return 1
+    case .matchedUsers(let users): return users.count
     }
   }
   
@@ -36,13 +42,16 @@ class AddFriendViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell: UITableViewCell
     
-    if let matchedUsers = matchedUsers {
+    switch searchResult {
+    case .NotSearched:
+      fatalError("There is something logic wrong")
+    case .NotFound:
+      cell = tableView.dequeueReusableCellWithIdentifier("NotFoundCell", forIndexPath: indexPath)
+    case .matchedUsers(let users):
       cell = tableView.dequeueReusableCellWithIdentifier("FriendResultCell", forIndexPath: indexPath)
       let label = cell.viewWithTag(1000) as! UILabel
       // let addButton = cell.viewWithTag(1001) as! UIButton
-      label.text = matchedUsers[indexPath.row]
-    }else {
-      cell = tableView.dequeueReusableCellWithIdentifier("NotFoundCell", forIndexPath: indexPath)
+      label.text = users[indexPath.row]
     }
     
     return cell
@@ -57,7 +66,11 @@ extension AddFriendViewController: UISearchBarDelegate {
     guard let username = searchBar.text else {
       return
     }
-    matchedUsers = dataModel.matchedUsersWithText(username)
+    if let users = dataModel.matchedUsersWithText(username) {
+      searchResult = .matchedUsers(users)
+    }else {
+      searchResult = .NotSearched
+    }
     tableView.reloadData()
   }
   

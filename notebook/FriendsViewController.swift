@@ -76,7 +76,12 @@ class FriendsViewController: UITableViewController {
       }
       
       addGroupFriendVC.friends = notContainsFriends
+      addGroupFriendVC.groupIndex = groupIndex
     }
+  }
+  
+  @IBAction func close(segue: UIStoryboardSegue) {
+    // Empty for unwind segue
   }
   
 }

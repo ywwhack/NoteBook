@@ -401,7 +401,7 @@
             </objects>
             <point key="canvasLocation" x="2216" y="1096"/>
         </scene>
-        <!--Add Group Friend View Controller-->
+        <!--AddFriendToGroup-->
         <scene sceneID="61P-z9-nfc">
             <objects>
                 <tableViewController storyboardIdentifier="AddFriendToGroupViewController" id="cTF-Py-QeW" customClass="AddGroupFriendViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
@@ -433,8 +433,21 @@
                             <outlet property="delegate" destination="cTF-Py-QeW" id="SpY-HY-CIy"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="AddFriendToGroup" id="fc8-Ek-U9c">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="mpB-PO-LaX">
+                            <connections>
+                                <segue destination="eyH-2m-ae4" kind="unwind" identifier="CancelToFriend" unwindAction="close:" id="qfw-3a-w2J"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="wkA-sZ-ep1">
+                            <connections>
+                                <segue destination="eyH-2m-ae4" kind="unwind" identifier="DoneToFriend" unwindAction="close:" id="IQw-ts-Oh0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAs-jt-clz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eyH-2m-ae4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2926" y="1090"/>
         </scene>

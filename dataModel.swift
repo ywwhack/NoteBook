@@ -90,4 +90,9 @@ class DataModel {
     return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
   }
   
+  func matchedUsersWithText(text: String) -> [String]? {
+    let users = ["cooli", "mark", "ealon", "kobe"]
+    return users
+  }
+  
 }

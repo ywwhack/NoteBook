@@ -25,6 +25,7 @@
 		583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */; };
 		5880C2B61CC08E7D0015CF6F /* AddGroupFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2B51CC08E7D0015CF6F /* AddGroupFriendViewController.swift */; };
 		5880C2B81CC092920015CF6F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2B71CC092920015CF6F /* Friend.swift */; };
+		5880C2BA1CC0CC060015CF6F /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2B91CC0CC060015CF6F /* AddFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoteDetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5880C2B51CC08E7D0015CF6F /* AddGroupFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupFriendViewController.swift; sourceTree = "<group>"; };
 		5880C2B71CC092920015CF6F /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		5880C2B91CC0CC060015CF6F /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */,
 				581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */,
 				5880C2B51CC08E7D0015CF6F /* AddGroupFriendViewController.swift */,
+				5880C2B91CC0CC060015CF6F /* AddFriendViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,
 				583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */,
 				581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */,
+				5880C2BA1CC0CC060015CF6F /* AddFriendViewController.swift in Sources */,
 				583B8D611CBD13D100E47D6A /* Note+CoreDataProperties.swift in Sources */,
 				583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */,
 				583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */,

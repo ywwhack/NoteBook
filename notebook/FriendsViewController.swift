@@ -77,6 +77,9 @@ class FriendsViewController: UITableViewController {
       
       addGroupFriendVC.friends = notContainsFriends
       addGroupFriendVC.groupIndex = groupIndex
+    }else if segue.identifier == "AddFriend" {
+      let addFriendVC = segue.destinationViewController as! AddFriendViewController
+      addFriendVC.dataModel = dataModel
     }
   }
   

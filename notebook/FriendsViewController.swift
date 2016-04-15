@@ -13,19 +13,39 @@ class FriendsViewController: UITableViewController {
   var dataModel: DataModel!
   var friends: [String]!
   var groups: [Group]!
+  var userIsLogin = false
+  
+  @IBOutlet weak var loginView: UIView!
+  @IBOutlet weak var usernameTextFiled: UITextField!
+  @IBOutlet weak var passwordTextFiled: UITextField!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let userInfo = dataModel.fetchUserInfo()
-    friends = userInfo.friends
-    groups = userInfo.groups
+    if let userInfo = dataModel.fetchUserInfo() {
+      friends = userInfo.friends
+      groups = userInfo.groups
+      userIsLogin = true
+      loginView.hidden = false
+    }
+  }
+  
+  @IBAction func signUp(sender: UIButton) {
+    
+  }
+  
+  @IBAction func Login(sender: UIButton) {
+    
   }
   
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 1 + groups.count
+    if userIsLogin {
+      return 1 + groups.count
+    }else {
+      return 0
+    }
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

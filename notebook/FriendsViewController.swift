@@ -35,7 +35,21 @@ class FriendsViewController: UITableViewController {
   }
   
   @IBAction func signUp(sender: UIButton) {
-    
+    if let username = usernameTextFiled.text, password = passwordTextFiled.text {
+      Alamofire
+        .request(.POST, "http://localhost:3000/signup", parameters: ["username": username, "password": password])
+        .responseJSON { response in
+          if let result = response.result.value as? [String: AnyObject] {
+            if result["code"] as! Int == 1 {
+              print("Signup success")
+              self.dataModel.username = username
+              self.updateUI()
+            }else {
+              print("Your info invalid")
+            }
+          }
+      }
+    }
   }
   
   @IBAction func Login(sender: UIButton) {

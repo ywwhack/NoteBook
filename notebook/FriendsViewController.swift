@@ -12,25 +12,32 @@ import Alamofire
 class FriendsViewController: UITableViewController {
   
   var dataModel: DataModel!
-  var friends: [String]!
-  var groups: [Group]!
+  var friends = [String]()
+  var groups = [Group]()
   var userIsLogin = false
   
   @IBOutlet weak var loginView: UIView!
   @IBOutlet weak var usernameTextFiled: UITextField!
   @IBOutlet weak var passwordTextFiled: UITextField!
+  @IBOutlet weak var logoutView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // congfigure UI
     loginView.backgroundColor = UIColor.clearColor()
+    logoutView.backgroundColor = UIColor.clearColor()
+    
+    if dataModel.username != nil {
+      userIsLogin = true
+      loginView.hidden = true
+    }else {
+      logoutView.hidden = true
+    }
     
     if let userInfo = dataModel.fetchUserInfo() {
       friends = userInfo.friends
       groups = userInfo.groups
-      userIsLogin = true
-      loginView.hidden = false
     }
   }
   
@@ -62,11 +69,20 @@ class FriendsViewController: UITableViewController {
     }
   }
   
+  @IBAction func logout(sender: UIButton) {
+    dataModel.username = nil
+    updateUI()
+  }
+  
   func updateUI() {
     if dataModel.username != nil {
       loginView.hidden = true
-      tableView.reloadData()
+      logoutView.hidden = false
+    }else {
+      loginView.hidden = false
+      logoutView.hidden = true
     }
+    tableView.reloadData()
   }
   
   // MARK: - Table view data source

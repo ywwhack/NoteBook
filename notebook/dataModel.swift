@@ -88,11 +88,6 @@ class DataModel {
   
   // MARK: - Mock User Data
   func fetchUserInfo() -> User? {
-    Alamofire
-      .request(.GET, "http://localhost:3000/user")
-      .responseJSON { response in
-        print(response.result.value)
-      }
     // return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
     return nil
   }

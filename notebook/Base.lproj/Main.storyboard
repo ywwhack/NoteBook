@@ -355,8 +355,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="lFS-BE-vtR">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtU-eB-tGu">
+                                    <rect key="frame" x="276" y="7" width="48" height="30"/>
+                                    <state key="normal" title="Logout"/>
+                                    <connections>
+                                        <action selector="logout:" destination="zFI-Mk-458" eventType="touchUpInside" id="1ei-uX-xF1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="RtU-eB-tGu" firstAttribute="centerX" secondItem="lFS-BE-vtR" secondAttribute="centerX" id="O1E-Ml-KO6"/>
+                                <constraint firstItem="RtU-eB-tGu" firstAttribute="centerY" secondItem="lFS-BE-vtR" secondAttribute="centerY" id="g4n-Am-b9z"/>
+                            </constraints>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="J3e-BF-h7S">
-                            <rect key="frame" x="0.0" y="220" width="600" height="192"/>
+                            <rect key="frame" x="0.0" y="264" width="600" height="192"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JkZ-jS-CMe">
@@ -417,7 +435,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" textLabel="xgA-J4-gb5" style="IBUITableViewCellStyleDefault" id="4PP-H0-PHG">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PP-H0-PHG" id="kx3-69-Lj0">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -434,7 +452,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddFriendCell" id="yDO-Yu-qeD">
-                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yDO-Yu-qeD" id="VZM-rz-RNt">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -464,6 +482,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="loginView" destination="J3e-BF-h7S" id="aty-p7-6QW"/>
+                        <outlet property="logoutView" destination="lFS-BE-vtR" id="X5N-i6-ctH"/>
                         <outlet property="passwordTextFiled" destination="GLS-Wi-Euy" id="I1s-pd-LuD"/>
                         <outlet property="usernameTextFiled" destination="JkZ-jS-CMe" id="tlf-U0-86q"/>
                     </connections>

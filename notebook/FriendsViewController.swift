@@ -36,37 +36,29 @@ class FriendsViewController: UITableViewController {
   
   @IBAction func signUp(sender: UIButton) {
     if let username = usernameTextFiled.text, password = passwordTextFiled.text {
-      Alamofire
-        .request(.POST, "http://localhost:3000/signup", parameters: ["username": username, "password": password])
-        .responseJSON { response in
-          if let result = response.result.value as? [String: AnyObject] {
-            if result["code"] as! Int == 1 {
-              print("Signup success")
-              self.dataModel.username = username
-              self.updateUI()
-            }else {
-              print("Your info invalid")
-            }
-          }
+      RemoteResource.signupWithUsername(username, password: password) { userInfoResult in
+        switch userInfoResult {
+        case .Success:
+          self.dataModel.username = username
+          self.updateUI()
+        case .Failed(let reason):
+          print(reason)
+        }
       }
     }
   }
   
   @IBAction func Login(sender: UIButton) {
     if let username = usernameTextFiled.text, password = passwordTextFiled.text {
-      Alamofire
-        .request(.POST, "http://localhost:3000/login", parameters: ["username": username, "password": password])
-        .responseJSON { response in
-          if let result = response.result.value as? [String: String] {
-            if result["validation"] == "success" {
-              print("Login")
-              self.dataModel.username = username
-              self.updateUI()
-            }else {
-              print("Your info invalid")
-            }
-          }
+      RemoteResource.loginWithUsername(username, password: password) { userInfoResult in
+        switch userInfoResult {
+        case .Success:
+          self.dataModel.username = username
+          self.updateUI()
+        case .Failed(let reason):
+          print(reason)
         }
+      }
     }
   }
   

@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddFriendViewController: UITableViewController {
   
   enum SearchResult {
     case NotSearched
+    case Loading
     case NotFound
     case matchedUsers([String])
   }
@@ -33,7 +35,7 @@ class AddFriendViewController: UITableViewController {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch searchResult {
     case .NotSearched: return 0
-    case .NotFound: return 1
+    case .NotFound, .Loading: return 1
     case .matchedUsers(let users): return users.count
     }
   }
@@ -45,6 +47,8 @@ class AddFriendViewController: UITableViewController {
     switch searchResult {
     case .NotSearched:
       fatalError("There is something logic wrong")
+    case .Loading:
+      cell = tableView.dequeueReusableCellWithIdentifier("LoadingCell", forIndexPath: indexPath)
     case .NotFound:
       cell = tableView.dequeueReusableCellWithIdentifier("NotFoundCell", forIndexPath: indexPath)
     case .matchedUsers(let users):
@@ -65,12 +69,22 @@ extension AddFriendViewController: UISearchBarDelegate {
     guard let username = searchBar.text else {
       return
     }
-    if let users = dataModel.matchedUsersWithText(username) {
-      searchResult = .matchedUsers(users)
-    }else {
-      searchResult = .NotSearched
-    }
+    
+    searchResult = .Loading
     tableView.reloadData()
+    
+    Alamofire
+      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
+      .responseJSON { response in
+        if let result = response.result.value as? [String: AnyObject] {
+          if let code = result["code"] as? Int, userInfo = result["userInfo"] as? [String: AnyObject] where code == 1 {
+            self.searchResult = .matchedUsers([userInfo["name"] as! String])
+          }else {
+            self.searchResult = .NotFound
+          }
+          self.tableView.reloadData()
+        }
+      }
   }
   
 }

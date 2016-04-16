@@ -14,7 +14,13 @@ enum PostUserInfoResult {
   case Failed(String)
 }
 
+enum SearchUserResult {
+  case Found(String)
+  case NotFound
+}
+
 struct RemoteResource {
+  // MARK: - Login and Signup
   static func loginWithUsername(username: String, password: String, completion: (PostUserInfoResult) -> ()) {
     postURLString("http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
   }
@@ -38,5 +44,14 @@ struct RemoteResource {
         completion(userInfoResult)
       }
   }
-      
+  
+  // MARK: - Search User
+  static func searchWithUsername(username: String, completion: SearchUserResult -> ()) {
+    Alamofire
+      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
+      .responseJSON { response in
+        
+      }
+  }
+  
 }

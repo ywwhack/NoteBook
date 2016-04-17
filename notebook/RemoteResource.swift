@@ -16,15 +16,15 @@ enum RequestResult {
 
 struct RemoteResource {
   // MARK: - Login and Signup
-  static func loginWithUsername(username: String, password: String, completion: (RequestResult) -> ()) {
+  static func loginWithUsername(username: String, password: String, completion: RequestResult -> ()) {
     postURLString("http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
   }
   
-  static func signupWithUsername(username: String, password: String, completion: (RequestResult) -> ()) {
+  static func signupWithUsername(username: String, password: String, completion: RequestResult -> ()) {
     postURLString("http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
   }
         
-  private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: (RequestResult) -> ()) {
+  private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: RequestResult -> ()) {
     var userInfoResult: RequestResult = .Failed("Recive result is not a json")
     Alamofire
       .request(.POST, urlString, parameters: ["username": username, "password": password])
@@ -40,8 +40,8 @@ struct RemoteResource {
       }
   }
   
-  // MARK: - Search User
-  static func addFriend(friendname: String, completion: (RequestResult) -> ()) {
+  // MARK: - Group Related Methods
+  static func addFriend(friendname: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
     var requestResult = RequestResult.Failed("Request Error")
     Alamofire
@@ -60,6 +60,32 @@ struct RemoteResource {
         }
         completion(requestResult)
       }
+  }
+  
+  static func createGroup(groupname: String, completion: RequestResult -> ()) {
+    let dataModel = DataModel.sharedDataModel()
+    let request = Alamofire
+      .request(.POST, "http://localhost:3000/create_group", parameters: ["username": dataModel.username!, "groupname": groupname])
+    processRequest(request, completion: completion)
+  }
+  
+  private static func processRequest(request: Request, completion: RequestResult -> ()) {
+    var requestResult = RequestResult.Failed("Request Error")
+    request
+      .responseJSON { response in
+        guard let result = response.result.value as? [String: AnyObject] else {
+          completion(requestResult)
+          return
+        }
+        if let code = result["code"] as? Int where code == 1 {
+          requestResult = .Success
+        }else {
+          if let reason = result["reason"] as? String {
+            requestResult = .Failed(reason)
+          }
+        }
+        completion(requestResult)
+    }
   }
   
 }

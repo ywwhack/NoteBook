@@ -39,6 +39,30 @@ class GroupsViewController: UITableViewController {
     }
   }
   
+  @IBAction func addGroup(sender: UIBarButtonItem) {
+    let alertController = UIAlertController(title: "Add Group", message: nil, preferredStyle: .Alert)
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    let doneAction = UIAlertAction(title: "Done", style: .Default) { _ in
+      guard let textFields = alertController.textFields else {
+        return
+      }
+      let groupTextField = textFields[0]
+      RemoteResource.createGroup(groupTextField.text!) { requestResult in
+        switch requestResult {
+        case .Success:
+          print("success")
+        case .Failed(let reason):
+          print(reason)
+        }
+      }
+    }
+    alertController.addAction(cancelAction)
+    alertController.addAction(doneAction)
+    alertController.addTextFieldWithConfigurationHandler(nil)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
   @IBAction func signUp(sender: UIButton) {
     if let username = usernameTextFiled.text, password = passwordTextFiled.text {
       RemoteResource.signupWithUsername(username, password: password) { userInfoResult in
@@ -117,15 +141,6 @@ class GroupsViewController: UITableViewController {
   // MARK: - UITableView Delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-  }
-  
-  // MARK: - Segue
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "AddGroup" {
-    }else if segue.identifier == "AddGroupMember" {
-      let addGroupMemberdVC = segue.destinationViewController as! AddGroupMemberViewController
-      addGroupMemberdVC.dataModel = dataModel
-    }
   }
   
   @IBAction func close(segue: UIStoryboardSegue) {

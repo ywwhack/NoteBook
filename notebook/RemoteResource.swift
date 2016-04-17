@@ -25,41 +25,17 @@ struct RemoteResource {
   }
         
   private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: RequestResult -> ()) {
-    var userInfoResult: RequestResult = .Failed("Recive result is not a json")
-    Alamofire
+    let request = Alamofire
       .request(.POST, urlString, parameters: ["username": username, "password": password])
-      .responseJSON { response in
-        if let result = response.result.value as? [String: AnyObject] {
-          if result["code"] as! Int == 1 {
-            userInfoResult = .Success
-          }else {
-            userInfoResult = .Failed(result["reason"] as! String)
-          }
-        }
-        completion(userInfoResult)
-      }
+    processRequest(request, completion: completion)
   }
   
   // MARK: - Group Related Methods
   static func addFriend(friendname: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    var requestResult = RequestResult.Failed("Request Error")
-    Alamofire
+    let request = Alamofire
       .request(.POST, "http://localhost:3000/add_friend", parameters: ["username": dataModel.username!, "friendname": friendname])
-      .responseJSON { response in
-        guard let result = response.result.value as? [String: AnyObject] else {
-          completion(requestResult)
-          return
-        }
-        if let code = result["code"] as? Int where code == 1 {
-          requestResult = .Success
-        }else {
-          if let reason = result["reason"] as? String {
-            requestResult = .Failed(reason)
-          }
-        }
-        completion(requestResult)
-      }
+    processRequest(request, completion: completion)
   }
   
   static func createGroup(groupname: String, completion: RequestResult -> ()) {

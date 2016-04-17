@@ -12,7 +12,7 @@ import Alamofire
 class GroupsViewController: UITableViewController {
   
   var dataModel: DataModel!
-  var groups = [Group]()
+  var groups = [String]()
   var userIsLogin = false
   
   @IBOutlet weak var loginView: UIView!
@@ -34,8 +34,22 @@ class GroupsViewController: UITableViewController {
       logoutView.hidden = true
     }
     
-    if let userInfo = dataModel.fetchUserInfo() {
-      groups = userInfo.groups
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    RemoteResource.getAllGroups { requestResult in
+      switch requestResult {
+      case .Success(let result):
+        guard let groups = result["groups"] as? [String] else {
+          return
+        }
+        self.groups = groups
+        self.tableView.reloadData()
+      case .Failed(let reason):
+        print(reason)
+      }
     }
   }
   
@@ -110,32 +124,19 @@ class GroupsViewController: UITableViewController {
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return userIsLogin ? groups.count : 0
+    return userIsLogin ? 1 : 0
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return groups[section].users.count + 1
+    return groups.count
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell: UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath)
     
-    let groupUsers = groups[indexPath.section].users
-    if indexPath.row == groupUsers.count {
-      cell = tableView.dequeueReusableCellWithIdentifier("AddFriendCell", forIndexPath: indexPath)
-    }else if indexPath.row > groupUsers.count {
-      cell = tableView.dequeueReusableCellWithIdentifier("ComfirmFriendCell", forIndexPath: indexPath)
-    }else {
-      cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
-      cell.textLabel?.text = groupUsers[indexPath.row]
-    }
-    
+    cell.textLabel?.text = groups[indexPath.row]
     
     return cell
-  }
-  
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return section == 0 ? "Friends" : groups[section - 1].title
   }
   
   // MARK: - UITableView Delegate

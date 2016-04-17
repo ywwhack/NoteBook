@@ -9,6 +9,5 @@
 import Foundation
 
 struct Group {
-  let title: String
-  var users: [String]
+  let name: String
 }

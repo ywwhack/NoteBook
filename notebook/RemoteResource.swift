@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum RequestResult {
-  case Success
+  case Success([String: AnyObject])
   case Failed(String)
 }
 
@@ -40,8 +40,13 @@ struct RemoteResource {
   
   static func createGroup(groupname: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    let request = Alamofire
-      .request(.POST, "http://localhost:3000/create_group", parameters: ["username": dataModel.username!, "groupname": groupname])
+    let request = Alamofire.request(.POST, "http://localhost:3000/create_group", parameters: ["username": dataModel.username!, "groupname": groupname])
+    processRequest(request, completion: completion)
+  }
+  
+  static func getAllGroups(completion completion: RequestResult -> ()) {
+    let dataModel = DataModel.sharedDataModel()
+    let request = Alamofire.request(.GET, "http://localhost:3000/get_all_groups", parameters: ["username": dataModel.username!])
     processRequest(request, completion: completion)
   }
   
@@ -54,7 +59,7 @@ struct RemoteResource {
           return
         }
         if let code = result["code"] as? Int where code == 1 {
-          requestResult = .Success
+          requestResult = .Success(result)
         }else {
           if let reason = result["reason"] as? String {
             requestResult = .Failed(reason)

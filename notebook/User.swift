@@ -10,6 +10,5 @@ import Foundation
 
 struct User {
   let name: String
-  let friends: [String]
-  let groups: [Group]
+  let groups: [String]
 }

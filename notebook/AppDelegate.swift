@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     let rootViewController = window?.rootViewController as! UITabBarController
     let noteListViewController = (rootViewController.viewControllers?[0] as! UINavigationController).viewControllers[0] as! NoteListViewController
-    let friendsViewController = (rootViewController.viewControllers?[1] as! UINavigationController).viewControllers[0] as! FriendsViewController
+    let friendsViewController = (rootViewController.viewControllers?[1] as! UINavigationController).viewControllers[0] as! GroupsViewController
 
     noteListViewController.dataModel = dataModel
     friendsViewController.dataModel = dataModel

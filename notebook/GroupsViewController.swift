@@ -9,10 +9,9 @@
 import UIKit
 import Alamofire
 
-class FriendsViewController: UITableViewController {
+class GroupsViewController: UITableViewController {
   
   var dataModel: DataModel!
-  var friends = [String]()
   var groups = [Group]()
   var userIsLogin = false
   
@@ -36,7 +35,6 @@ class FriendsViewController: UITableViewController {
     }
     
     if let userInfo = dataModel.fetchUserInfo() {
-      friends = userInfo.friends
       groups = userInfo.groups
     }
   }
@@ -88,34 +86,26 @@ class FriendsViewController: UITableViewController {
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    if userIsLogin {
-      return 1 + groups.count
-    }else {
-      return 0
-    }
+    return userIsLogin ? groups.count : 0
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return section == 0 ? friends.count : groups[section - 1].friends.count + 1
+    return groups[section].users.count + 1
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell
     
-    if indexPath.section == 0 {
-      cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
-      cell.textLabel?.text = friends[indexPath.row]
+    let groupUsers = groups[indexPath.section].users
+    if indexPath.row == groupUsers.count {
+      cell = tableView.dequeueReusableCellWithIdentifier("AddFriendCell", forIndexPath: indexPath)
+    }else if indexPath.row > groupUsers.count {
+      cell = tableView.dequeueReusableCellWithIdentifier("ComfirmFriendCell", forIndexPath: indexPath)
     }else {
-      let groupFriends = groups[indexPath.section - 1].friends
-      if indexPath.row == groupFriends.count {
-        cell = tableView.dequeueReusableCellWithIdentifier("AddFriendCell", forIndexPath: indexPath)
-      }else if indexPath.row > groupFriends.count {
-        cell = tableView.dequeueReusableCellWithIdentifier("ComfirmFriendCell", forIndexPath: indexPath)
-      }else {
-        cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
-        cell.textLabel?.text = groupFriends[indexPath.row]
-      }
+      cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
+      cell.textLabel?.text = groupUsers[indexPath.row]
     }
+    
     
     return cell
   }
@@ -132,18 +122,18 @@ class FriendsViewController: UITableViewController {
   // MARK: - Segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "AddFriendToGroup" {
-      let addGroupFriendVC = segue.destinationViewController as! AddGroupFriendViewController
-      let indexPath = tableView.indexPathForCell(sender?.superview?!.superview as! UITableViewCell)!
-      let groupIndex = indexPath.section - 1
-      let groupFriends = groups[groupIndex].friends
-      let notContainsFriends = friends.filter { friend in
-        return !groupFriends.contains(friend)
-      }.map { (friendName) -> Friend in
-        return Friend(name: friendName, selected: false)
-      }
-      
-      addGroupFriendVC.friends = notContainsFriends
-      addGroupFriendVC.groupIndex = groupIndex
+//      let addGroupFriendVC = segue.destinationViewController as! AddGroupFriendViewController
+//      let indexPath = tableView.indexPathForCell(sender?.superview?!.superview as! UITableViewCell)!
+//      let groupIndex = indexPath.section - 1
+//      let groupFriends = groups[groupIndex].friends
+//      let notContainsFriends = friends.filter { friend in
+//        return !groupFriends.contains(friend)
+//      }.map { (friendName) -> Friend in
+//        return Friend(name: friendName, selected: false)
+//      }
+//      
+//      addGroupFriendVC.friends = notContainsFriends
+//      addGroupFriendVC.groupIndex = groupIndex
     }else if segue.identifier == "AddFriend" {
       let addFriendVC = segue.destinationViewController as! AddFriendViewController
       addFriendVC.dataModel = dataModel

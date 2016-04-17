@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */; };
-		581F755B1CBF7B6600DAB7A5 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */; };
+		581F755B1CBF7B6600DAB7A5 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */; };
 		583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */; };
 		583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4A1CBD128800E47D6A /* AppDelegate.swift */; };
 		583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B8D4C1CBD128800E47D6A /* NoteListViewController.swift */; };
@@ -32,7 +32,7 @@
 
 /* Begin PBXFileReference section */
 		581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePresentationViewController.swift; sourceTree = "<group>"; };
-		581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+nameInDocuments.swift"; sourceTree = "<group>"; };
 		583B8D471CBD128800E47D6A /* notebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		583B8D4A1CBD128800E47D6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				583B8D651CBD207600E47D6A /* AddNoteViewController.swift */,
 				583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */,
 				581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */,
-				581F755A1CBF7B6600DAB7A5 /* FriendsViewController.swift */,
+				581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */,
 				5880C2B51CC08E7D0015CF6F /* AddGroupFriendViewController.swift */,
 				5880C2B91CC0CC060015CF6F /* AddFriendViewController.swift */,
 			);
@@ -281,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */,
-				581F755B1CBF7B6600DAB7A5 /* FriendsViewController.swift in Sources */,
+				581F755B1CBF7B6600DAB7A5 /* GroupsViewController.swift in Sources */,
 				583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */,
 				5880C2C21CC0DD3B0015CF6F /* Friend.swift in Sources */,
 				5880C2C61CC0DD3B0015CF6F /* User.swift in Sources */,

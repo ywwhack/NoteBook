@@ -51,13 +51,13 @@ class AddGroupFriendViewController: UITableViewController {
   // MARK: - Segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "DoneToFriend" {
-      let friendsVC = segue.destinationViewController as! FriendsViewController
+      let friendsVC = segue.destinationViewController as! GroupsViewController
       friends
         .filter { friendInfo in
           return friendInfo.selected
         }
         .forEach { friendInfo in
-          friendsVC.groups[groupIndex].friends.append(friendInfo.name)
+          friendsVC.groups[groupIndex].users.append(friendInfo.name)
         }
       friendsVC.tableView.reloadSections(NSIndexSet(index: groupIndex + 1), withRowAnimation: .Automatic)
     }

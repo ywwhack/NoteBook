@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class AddFriendViewController: UITableViewController {
+class AddGroupMemberViewController: UITableViewController {
   
   enum SearchResult {
     case NotSearched
@@ -75,7 +75,7 @@ class AddFriendViewController: UITableViewController {
   
 }
 
-extension AddFriendViewController: UISearchBarDelegate {
+extension AddGroupMemberViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
     guard let username = searchBar.text else {

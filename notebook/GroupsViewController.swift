@@ -121,22 +121,10 @@ class GroupsViewController: UITableViewController {
   
   // MARK: - Segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "AddFriendToGroup" {
-//      let addGroupFriendVC = segue.destinationViewController as! AddGroupFriendViewController
-//      let indexPath = tableView.indexPathForCell(sender?.superview?!.superview as! UITableViewCell)!
-//      let groupIndex = indexPath.section - 1
-//      let groupFriends = groups[groupIndex].friends
-//      let notContainsFriends = friends.filter { friend in
-//        return !groupFriends.contains(friend)
-//      }.map { (friendName) -> Friend in
-//        return Friend(name: friendName, selected: false)
-//      }
-//      
-//      addGroupFriendVC.friends = notContainsFriends
-//      addGroupFriendVC.groupIndex = groupIndex
-    }else if segue.identifier == "AddFriend" {
-      let addFriendVC = segue.destinationViewController as! AddFriendViewController
-      addFriendVC.dataModel = dataModel
+    if segue.identifier == "AddGroup" {
+    }else if segue.identifier == "AddGroupMember" {
+      let addGroupMemberdVC = segue.destinationViewController as! AddGroupMemberViewController
+      addGroupMemberdVC.dataModel = dataModel
     }
   }
   

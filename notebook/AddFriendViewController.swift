@@ -26,6 +26,18 @@ class AddFriendViewController: UITableViewController {
     
   }
   
+  @IBAction func addFriend(sender: UIButton) {
+    let friendLabel = sender.superview?.viewWithTag(1000) as! UILabel
+    RemoteResource.addFriend(friendLabel.text!) { requestResult in
+      switch requestResult {
+      case .Success:
+        print("success")
+      case .Failed(let reason):
+        print(reason)
+      }
+    }
+  }
+  
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

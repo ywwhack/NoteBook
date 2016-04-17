@@ -11,8 +11,17 @@ import CoreData
 import Alamofire
 
 class DataModel {
-  // MARK: - Core Data stack
   
+  // MARK: - sharedDataModel
+  private static var dataModel: DataModel = {
+    return DataModel()
+  }()
+  
+  static func sharedDataModel() -> DataModel {
+    return dataModel
+  }
+  
+  // MARK: - Core Data stack
   lazy var applicationDocumentsDirectory: NSURL = {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.zank.notebook" in the application's documents Application Support directory.
     let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)

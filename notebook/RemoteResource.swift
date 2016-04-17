@@ -9,28 +9,23 @@
 import Foundation
 import Alamofire
 
-enum PostUserInfoResult {
+enum RequestResult {
   case Success
   case Failed(String)
 }
 
-enum SearchUserResult {
-  case Found(String)
-  case NotFound
-}
-
 struct RemoteResource {
   // MARK: - Login and Signup
-  static func loginWithUsername(username: String, password: String, completion: (PostUserInfoResult) -> ()) {
+  static func loginWithUsername(username: String, password: String, completion: (RequestResult) -> ()) {
     postURLString("http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
   }
   
-  static func signupWithUsername(username: String, password: String, completion: (PostUserInfoResult) -> ()) {
+  static func signupWithUsername(username: String, password: String, completion: (RequestResult) -> ()) {
     postURLString("http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
   }
         
-  private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: (PostUserInfoResult) -> ()) {
-    var userInfoResult: PostUserInfoResult = .Failed("Recive result is not a json")
+  private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: (RequestResult) -> ()) {
+    var userInfoResult: RequestResult = .Failed("Recive result is not a json")
     Alamofire
       .request(.POST, urlString, parameters: ["username": username, "password": password])
       .responseJSON { response in
@@ -46,11 +41,24 @@ struct RemoteResource {
   }
   
   // MARK: - Search User
-  static func searchWithUsername(username: String, completion: SearchUserResult -> ()) {
+  static func addFriend(friendname: String, completion: (RequestResult) -> ()) {
+    let dataModel = DataModel.sharedDataModel()
+    var requestResult = RequestResult.Failed("Request Error")
     Alamofire
-      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
+      .request(.POST, "http://localhost:3000/add_friend", parameters: ["username": dataModel.username!, "friendname": friendname])
       .responseJSON { response in
-        
+        guard let result = response.result.value as? [String: AnyObject] else {
+          completion(requestResult)
+          return
+        }
+        if let code = result["code"] as? Int where code == 1 {
+          requestResult = .Success
+        }else {
+          if let reason = result["reason"] as? String {
+            requestResult = .Failed(reason)
+          }
+        }
+        completion(requestResult)
       }
   }
   

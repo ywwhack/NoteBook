@@ -525,6 +525,9 @@
                                         <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFB-rq-68X">
                                             <rect key="frame" x="555" y="7" width="30" height="30"/>
                                             <state key="normal" title="Add"/>
+                                            <connections>
+                                                <action selector="addFriend:" destination="BAm-0f-Epa" eventType="touchUpInside" id="T2p-b0-sFX"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

@@ -17,18 +17,18 @@ enum RequestResult {
 // FIXME: when user is not login, some request with username will crash app
 
 struct RemoteResource {
-  // MARK: - Login and Signup
+  // MARK: - User related methods
   static func loginWithUsername(username: String, password: String, completion: RequestResult -> ()) {
-    postURLString("http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
+    requestWithMethod(.GET, urlString: "http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
   }
   
   static func signupWithUsername(username: String, password: String, completion: RequestResult -> ()) {
-    postURLString("http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
+    requestWithMethod(.POST, urlString: "http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
   }
         
-  private static func postURLString(urlString: String, withUsername username: String, andPassword password: String, completion: RequestResult -> ()) {
+  private static func requestWithMethod(method: Alamofire.Method, urlString: String, withUsername username: String, andPassword password: String, completion: RequestResult -> ()) {
     let request = Alamofire
-      .request(.POST, urlString, parameters: ["username": username, "password": password])
+      .request(method, urlString, parameters: ["username": username, "password": password])
     processRequest(request, completion: completion)
   }
   

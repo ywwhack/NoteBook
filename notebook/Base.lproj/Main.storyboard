@@ -429,7 +429,7 @@
             </objects>
             <point key="canvasLocation" x="1404" y="-277"/>
         </scene>
-        <!--Groups-->
+        <!--Group List-->
         <scene sceneID="hPn-cU-ce9">
             <objects>
                 <tableViewController id="zFI-Mk-458" customClass="GroupsViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
@@ -542,7 +542,7 @@
                             <outlet property="delegate" destination="zFI-Mk-458" id="snk-fS-ALu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="Vn1-R4-GUB">
+                    <navigationItem key="navigationItem" title="Group List" id="Vn1-R4-GUB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PSB-7q-1c1">
                             <connections>
                                 <action selector="addGroup:" destination="zFI-Mk-458" id="j4m-dt-iMY"/>
@@ -564,15 +564,23 @@
         <scene sceneID="xfE-zI-c0F">
             <objects>
                 <tableViewController id="iPx-DK-g6j" customClass="GroupDetailViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gJH-6B-0XK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gJH-6B-0XK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="FRm-2h-ZzS">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemberCell" id="FRm-2h-ZzS">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FRm-2h-ZzS" id="1t2-pZ-1nq">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" id="tMq-Ag-tCD">
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tMq-Ag-tCD" id="J1o-FQ-k9X">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
@@ -697,11 +705,11 @@
             </objects>
             <point key="canvasLocation" x="2216" y="1826"/>
         </scene>
-        <!--Friends-->
+        <!--Groups-->
         <scene sceneID="Wge-nz-fTt">
             <objects>
                 <navigationController id="edI-lp-YDg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="user" id="Eyg-wT-bQJ"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="user" id="Eyg-wT-bQJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yat-Tx-a0D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

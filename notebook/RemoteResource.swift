@@ -14,6 +14,8 @@ enum RequestResult {
   case Failed(String)
 }
 
+// FIXME: when user is not login, some request with username will crash app
+
 struct RemoteResource {
   // MARK: - Login and Signup
   static func loginWithUsername(username: String, password: String, completion: RequestResult -> ()) {
@@ -52,6 +54,12 @@ struct RemoteResource {
   
   static func getGroupDetailWithId(groupId: String, completion: RequestResult -> ()) {
     let request = Alamofire.request(.GET, "http://localhost:3000/get_group_detail", parameters: ["groupId": groupId])
+    processRequest(request, completion: completion)
+  }
+  
+  static func addNote(note: String, toGroup groupId: String, completion: RequestResult -> ()) {
+    let dataModel = DataModel.sharedDataModel()
+    let request = Alamofire.request(.POST, "http://localhost:3000/add_note_to_group", parameters: ["username": dataModel.username!, "noteContent": note, "groupId": groupId])
     processRequest(request, completion: completion)
   }
   

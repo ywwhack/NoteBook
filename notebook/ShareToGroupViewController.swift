@@ -75,12 +75,21 @@ class ShareToGroupViewController: UITableViewController {
   }
   
    // MARK: - Navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "DoneToNoteDetail" {
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let selectedGroupIndex = selectedGroupIndex where segue.identifier == "DoneToNoteDetail" {
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
-      print(selectedGroupIndex)
+      let group = groups[selectedGroupIndex]
+      RemoteResource.addNote(noteDetailVC.content, toGroup: group.id) { requestResult in
+        switch requestResult {
+        case .Success:
+          noteDetailVC.note.groupname = group.name
+          noteDetailVC.dataModel.saveContext()
+          print("success")
+        case .Failed(let reason):
+          print(reason)
+        }
+      }
     }
-   }
-  
+  }
   
 }

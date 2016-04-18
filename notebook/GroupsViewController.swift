@@ -39,17 +39,19 @@ class GroupsViewController: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    RemoteResource.getAllGroups { requestResult in
-      switch requestResult {
-      case .Success(let result):
-        guard let groups = result["groups"] as? [[String: AnyObject]] else {
-          return
+    if userIsLogin {
+      RemoteResource.getAllGroups { requestResult in
+        switch requestResult {
+        case .Success(let result):
+          guard let groups = result["groups"] as? [[String: AnyObject]] else {
+            return
+          }
+          self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
+          }
+          self.tableView.reloadData()
+        case .Failed(let reason):
+          print(reason)
         }
-        self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
-        }
-        self.tableView.reloadData()
-      case .Failed(let reason):
-        print(reason)
       }
     }
   }

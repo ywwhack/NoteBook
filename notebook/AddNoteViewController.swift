@@ -29,7 +29,7 @@ class AddNoteViewController: UITableViewController {
   @IBAction func done(sender: UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
     let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: dataModel.managedObjectContext) as! Note
-    newNote.message = messageTextView.text
+    newNote.content = messageTextView.text
     newNote.createAt = NSDate().timeIntervalSince1970
     newNote.images = imageNames
     

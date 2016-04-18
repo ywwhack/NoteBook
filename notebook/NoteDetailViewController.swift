@@ -12,20 +12,35 @@ class NoteDetailViewController: UITableViewController {
   
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var detailLabel: UILabel!
   
   var imageNames: [String]!
-  var message: String!
+  var content: String!
   var dataModel: DataModel!
+  var note: Note!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    messageTextView.text = message
+    // configure UI
+    messageTextView.text = content
     messageTextView.font = UIFont.systemFontOfSize(16)
     messageTextView.constraints.forEach { constraint in
       if constraint.firstAttribute == .Height {
-        constraint.constant = heightForMessage(message)
+        constraint.constant = heightForMessage(content)
       }
+    }
+    
+    imageNames = note.images as! [String]
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    if let groupname = note.groupname {
+      detailLabel.text = groupname
+    }else {
+      detailLabel.text = nil
     }
   }
   
@@ -45,6 +60,7 @@ class NoteDetailViewController: UITableViewController {
   
   // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // TODO: - Prevent the ShareToGroup segue when groupname is exist
     if segue.identifier == "ShowImage" {
       let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
       let imagePresentationVC = segue.destinationViewController as! ImagePresentationViewController

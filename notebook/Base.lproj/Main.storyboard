@@ -181,7 +181,7 @@
                         <sections>
                             <tableViewSection id="o55-fh-9JR">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteDetailCell" rowHeight="279" id="kTH-Cp-hnG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="279" id="kTH-Cp-hnG">
                                         <rect key="frame" x="0.0" y="99" width="600" height="279"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kTH-Cp-hnG" id="kVk-Ci-Gv8">
@@ -273,7 +273,7 @@
                             </tableViewSection>
                             <tableViewSection id="aIS-XW-pd9">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="uZ7-ie-rgI" detailTextLabel="wo4-cL-Cw6" style="IBUITableViewCellStyleValue1" id="u97-hO-OMr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShareToGroupCell" textLabel="uZ7-ie-rgI" detailTextLabel="wo4-cL-Cw6" style="IBUITableViewCellStyleValue1" id="u97-hO-OMr">
                                         <rect key="frame" x="0.0" y="414" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u97-hO-OMr" id="hKt-4P-uqC">
@@ -311,6 +311,7 @@
                     <navigationItem key="navigationItem" title="Note Detail" id="wKw-vJ-oX4"/>
                     <connections>
                         <outlet property="collectionView" destination="Lja-7u-wlJ" id="GXf-zT-K8A"/>
+                        <outlet property="detailLabel" destination="wo4-cL-Cw6" id="Ocx-iN-aCc"/>
                         <outlet property="messageTextView" destination="XgN-Dt-KKy" id="gOl-7w-hmC"/>
                     </connections>
                 </tableViewController>

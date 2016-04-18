@@ -24,14 +24,9 @@ class NoteListViewController: UITableViewController {
     
     notes = dataModel.fetchNotes()
     tableView.reloadData()
-//    notes.forEach { note in
-//      print(note.message)
-//      print(NSDate(timeIntervalSince1970: note.createAt))
-//      print(note.images)
-//    }
   }
   
-  // MARK: - Segue
+  // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "AddNote" {
       let addNoteVC = segue.destinationViewController as! AddNoteViewController
@@ -42,9 +37,10 @@ class NoteListViewController: UITableViewController {
       }
       let note = notes[indexPath.row]
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
-      noteDetailVC.message = note.message
+      noteDetailVC.content = note.content
       noteDetailVC.imageNames = note.images as! [String]
       noteDetailVC.dataModel = dataModel
+      noteDetailVC.note = note
     }
   }
   
@@ -55,7 +51,7 @@ class NoteListViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("NoteListCell", forIndexPath: indexPath)
-    cell.textLabel?.text = notes[indexPath.row].message
+    cell.textLabel?.text = notes[indexPath.row].content
     return cell
   }
   

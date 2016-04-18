@@ -38,13 +38,22 @@ class NoteDetailViewController: UITableViewController {
     return 1
   }
   
-  // MARK: - Segue
+  // MARK: - Table view delegate
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
+  // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowImage" {
       let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
       let imagePresentationVC = segue.destinationViewController as! ImagePresentationViewController
       imagePresentationVC.imageName = imageNames[indexPath.row]
     }
+  }
+  
+  @IBAction func close(segue: UIStoryboardSegue) {
+    // for unwind segue
   }
   
 }

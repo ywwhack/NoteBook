@@ -12,7 +12,7 @@ import Alamofire
 class GroupsViewController: UITableViewController {
   
   var dataModel: DataModel!
-  var groups = [String]()
+  var groups = [Group]()
   var userIsLogin = false
   
   @IBOutlet weak var loginView: UIView!
@@ -42,10 +42,11 @@ class GroupsViewController: UITableViewController {
     RemoteResource.getAllGroups { requestResult in
       switch requestResult {
       case .Success(let result):
-        guard let groups = result["groups"] as? [String] else {
+        guard let groups = result["groups"] as? [[String: AnyObject]] else {
           return
         }
-        self.groups = groups
+        self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
+        }
         self.tableView.reloadData()
       case .Failed(let reason):
         print(reason)
@@ -134,7 +135,7 @@ class GroupsViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath)
     
-    cell.textLabel?.text = groups[indexPath.row]
+    cell.textLabel?.text = groups[indexPath.row].name
     
     return cell
   }

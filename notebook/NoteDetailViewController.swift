@@ -60,11 +60,18 @@ class NoteDetailViewController: UITableViewController {
   
   // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // TODO: - Prevent the ShareToGroup segue when groupname is exist
     if segue.identifier == "ShowImage" {
       let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
       let imagePresentationVC = segue.destinationViewController as! ImagePresentationViewController
       imagePresentationVC.imageName = imageNames[indexPath.row]
+    }
+  }
+  
+  override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    if identifier == "ShareToGroup" && note.groupname != nil {
+      return false
+    }else {
+      return true
     }
   }
   

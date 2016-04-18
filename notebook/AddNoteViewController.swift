@@ -11,7 +11,7 @@ import CoreData
 
 class AddNoteViewController: UITableViewController {
   
-  var dataModel: DataModel!
+  var dataModel = DataModel.sharedDataModel()
   var imageNames = [String]()
   
   @IBOutlet weak var messageTextView: UITextView!

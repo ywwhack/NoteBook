@@ -18,7 +18,7 @@ class AddGroupMemberViewController: UITableViewController {
     case matchedUsers([String])
   }
   
-  var dataModel: DataModel!
+  var dataModel = DataModel.sharedDataModel()
   var searchResult: SearchResult = .NotSearched
   
   override func viewDidLoad() {

@@ -11,7 +11,7 @@ import Alamofire
 
 class GroupsViewController: UITableViewController {
   
-  var dataModel: DataModel!
+  var dataModel = DataModel.sharedDataModel()
   var groups = [Group]()
   var userIsLogin = false
   
@@ -147,7 +147,7 @@ class GroupsViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
-  // Segue
+  // MARK: - Navigation
   @IBAction func close(segue: UIStoryboardSegue) {
     // Empty for unwind segue
   }

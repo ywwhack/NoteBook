@@ -11,7 +11,7 @@ import CoreData
 
 class NoteListViewController: UITableViewController {
 
-  var dataModel: DataModel!
+  var dataModel = DataModel.sharedDataModel()
   var notes: [Note]!
   
   override func viewDidLoad() {
@@ -28,10 +28,7 @@ class NoteListViewController: UITableViewController {
   
   // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "AddNote" {
-      let addNoteVC = segue.destinationViewController as! AddNoteViewController
-      addNoteVC.dataModel = dataModel
-    }else if segue.identifier == "ShowNote" {
+    if segue.identifier == "ShowNote" {
       guard let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) else {
         return
       }
@@ -39,7 +36,6 @@ class NoteListViewController: UITableViewController {
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
       noteDetailVC.content = note.content
       noteDetailVC.imageNames = note.images as! [String]
-      noteDetailVC.dataModel = dataModel
       noteDetailVC.note = note
     }
   }

@@ -16,7 +16,7 @@ class NoteDetailViewController: UITableViewController {
   
   var imageNames: [String]!
   var content: String!
-  var dataModel: DataModel!
+  var dataModel = DataModel.sharedDataModel()
   var note: Note!
   
   override func viewDidLoad() {

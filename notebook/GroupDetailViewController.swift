@@ -40,14 +40,18 @@ class GroupDetailViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return section == 0 ? members.count : sharedNotes.count
+    return section == 0 ? members.count + 1 : sharedNotes.count
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell: UITableViewCell
     if indexPath.section == 0 {
-      cell = tableView.dequeueReusableCellWithIdentifier("MemberCell", forIndexPath: indexPath)
-      cell.textLabel?.text = members[indexPath.row]
+      if indexPath.row == members.count {
+        cell = tableView.dequeueReusableCellWithIdentifier("AddMemberCell", forIndexPath: indexPath)
+      }else {
+        cell = tableView.dequeueReusableCellWithIdentifier("MemberCell", forIndexPath: indexPath)
+        cell.textLabel?.text = members[indexPath.row]
+      }
     }else {
       cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath)
       cell.textLabel?.text = sharedNotes[indexPath.row]
@@ -63,6 +67,14 @@ class GroupDetailViewController: UITableViewController {
   // MARK: - Table view delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
+  // MARK: - Navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "AddGroupMember" {
+      let addGroupMemberVC = segue.destinationViewController as! AddGroupMemberViewController
+      addGroupMemberVC.groupId = groupInfo.id
+    }
   }
   
 }

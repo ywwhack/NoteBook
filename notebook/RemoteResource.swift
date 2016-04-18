@@ -33,10 +33,9 @@ struct RemoteResource {
   }
   
   // MARK: - Group Related Methods
-  static func addFriend(friendname: String, completion: RequestResult -> ()) {
-    let dataModel = DataModel.sharedDataModel()
+  static func addMember(membername: String, ToGroup groupId: String, completion: RequestResult -> ()) {
     let request = Alamofire
-      .request(.POST, "http://localhost:3000/add_friend", parameters: ["username": dataModel.username!, "friendname": friendname])
+      .request(.POST, "http://localhost:3000/add_group_member", parameters: ["membername": membername, "groupId": groupId])
     processRequest(request, completion: completion)
   }
   

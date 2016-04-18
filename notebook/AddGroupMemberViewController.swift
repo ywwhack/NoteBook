@@ -20,15 +20,16 @@ class AddGroupMemberViewController: UITableViewController {
   
   var dataModel = DataModel.sharedDataModel()
   var searchResult: SearchResult = .NotSearched
+  var groupId: String!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
   }
   
-  @IBAction func addFriend(sender: UIButton) {
-    let friendLabel = sender.superview?.viewWithTag(1000) as! UILabel
-    RemoteResource.addFriend(friendLabel.text!) { requestResult in
+  @IBAction func addGroupMember(sender: UIButton) {
+    let memeberLabel = sender.superview?.viewWithTag(1000) as! UILabel
+    RemoteResource.addMember(memeberLabel.text!, ToGroup: groupId) { requestResult in
       switch requestResult {
       case .Success:
         print("success")

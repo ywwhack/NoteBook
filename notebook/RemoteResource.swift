@@ -50,6 +50,11 @@ struct RemoteResource {
     processRequest(request, completion: completion)
   }
   
+  static func getGroupDetailWithId(groupId: String, completion: RequestResult -> ()) {
+    let request = Alamofire.request(.GET, "http://localhost:3000/get_group_detail", parameters: ["groupId": groupId])
+    processRequest(request, completion: completion)
+  }
+  
   private static func processRequest(request: Request, completion: RequestResult -> ()) {
     var requestResult = RequestResult.Failed("Request Error")
     request

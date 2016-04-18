@@ -145,8 +145,20 @@ class GroupsViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
+  // Segue
   @IBAction func close(segue: UIStoryboardSegue) {
     // Empty for unwind segue
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowGroupDetail" {
+      guard let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) else {
+        return
+      }
+      let groupDetailVC = segue.destinationViewController as! GroupDetailViewController
+      let group = groups[indexPath.row]
+      groupDetailVC.groupInfo = group
+    }
   }
   
 }

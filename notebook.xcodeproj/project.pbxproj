@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580709A91CC4892000D1EC88 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580709A81CC4892000D1EC88 /* GroupDetailViewController.swift */; };
 		581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */; };
 		581F755B1CBF7B6600DAB7A5 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */; };
 		583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		580709A81CC4892000D1EC88 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePresentationViewController.swift; sourceTree = "<group>"; };
 		581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+nameInDocuments.swift"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				581F755A1CBF7B6600DAB7A5 /* GroupsViewController.swift */,
 				5880C2B51CC08E7D0015CF6F /* AddGroupViewController.swift */,
 				5880C2B91CC0CC060015CF6F /* AddGroupMemberViewController.swift */,
+				580709A81CC4892000D1EC88 /* GroupDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				583A0E341CBE267400F44FAC /* UIImage+nameInDocuments.swift in Sources */,
 				581F755B1CBF7B6600DAB7A5 /* GroupsViewController.swift in Sources */,
+				580709A91CC4892000D1EC88 /* GroupDetailViewController.swift in Sources */,
 				583B8D6A1CBE1E9400E47D6A /* NoteDetailViewController.swift in Sources */,
 				5880C2C61CC0DD3B0015CF6F /* User.swift in Sources */,
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,

@@ -12,7 +12,7 @@ import CoreData
 class NoteListViewController: UITableViewController {
 
   var dataModel = DataModel.sharedDataModel()
-  var notes: [Note]!
+  var notes = [Note]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,8 +22,10 @@ class NoteListViewController: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    notes = dataModel.fetchNotes()
-    tableView.reloadData()
+    if let notes = dataModel.fetchNotes() {
+      self.notes = notes
+      tableView.reloadData()
+    }
   }
   
   // MARK: - Navigation

@@ -83,33 +83,52 @@ class DataModel {
     }
   }
   
-  // MARK: - Fetch Methods
-  func fetchNotes() -> [Note] {
-    let fetchRequest = NSFetchRequest(entityName: "Note")
-    do {
-      let results = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Note]
-      return results
-    }catch {
-      print("Fetch notes error \(error)")
-      fatalError()
+  // MARK: - Note related Methods
+  func fetchNotes() -> [Note]? {
+    guard let user = user, notes = user.notes else {
+      print("User is not login")
+      return nil
+    }
+    
+    return Array(arrayLiteral: notes) as? [Note]
+  }
+  
+  func addNote(content content: String, images: [String]) {
+    let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: managedObjectContext) as! Note
+    newNote.content = content
+    newNote.createAt = NSDate().timeIntervalSince1970
+    newNote.images = images
+    newNote.owner = user!
+    saveContext()
+  }
+  
+  // MAKR: - User related methods
+  private func createNewUser(username: String) -> User {
+    let newUser = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: managedObjectContext) as! User
+    newUser.name = username
+    saveContext()
+    
+    return newUser
+  }
+  
+  var user: User? {
+    if let username = username {
+      let fetchRequest = NSFetchRequest(entityName: "User")
+      fetchRequest.predicate = NSPredicate(format: "name=%@", username)
+      do {
+        let users = try managedObjectContext.executeFetchRequest(fetchRequest) as! [User]
+        if users.isEmpty {
+          return createNewUser(username)
+        }else {
+          return users[0]
+        }
+      }catch {
+        fatalError("user may be not exist \(error)")
+      }
+    }else {
+      return nil
     }
   }
-  
-  // MARK: - Mock User Data
-  func fetchUserInfo() -> User? {
-    // return User(name: "zank", friends: ["ywwhack", "jack", "mike"], groups: [Group(title: "A", friends: ["jack", "mike"]), Group(title: "B", friends: ["ywwhack", "mike"])])
-    return nil
-  }
-  
-  func matchedUsersWithText(text: String) -> [String]? {
-    let users = ["cooli", "mark", "ealon", "kobe"]
-    return users
-  }
-  
-  // MARK: - NSUserDefaults
-  lazy var userDefaults: NSUserDefaults = {
-    return NSUserDefaults.standardUserDefaults()
-  }()
   
   var username: String? {
     get {
@@ -120,5 +139,9 @@ class DataModel {
       userDefaults.setObject(newValue, forKey: "Username")
     }
   }
+  
+  private var userDefaults: NSUserDefaults = {
+    return NSUserDefaults.standardUserDefaults()
+  }()
   
 }

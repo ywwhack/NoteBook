@@ -79,10 +79,27 @@ class GroupListViewController: UITableViewController {
     dataModel.username = nil
     userIsLogin = false
     
-    let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-    UIApplication.sharedApplication().keyWindow?.rootViewController = loginVC
-    
+    switchToLoginViewController()
     updateUI()
+  }
+  
+  func switchToLoginViewController() {
+    let keyWindow = UIApplication.sharedApplication().keyWindow!
+    let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+    let containerVC = keyWindow.rootViewController!
+    let loginView = loginVC.view
+    let containerView = containerVC.view
+    let screenHeight = UIScreen.mainScreen().bounds.height
+    loginView.center.y -= screenHeight
+    containerView.addSubview(loginView)
+    containerView.bringSubviewToFront(loginView)
+  
+    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+      loginView.center.y += screenHeight
+      }) { _ in
+      loginView.removeFromSuperview()
+      keyWindow.rootViewController = loginVC
+    }
   }
   
   func updateUI() {

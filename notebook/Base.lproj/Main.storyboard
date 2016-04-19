@@ -65,7 +65,7 @@
                                             <constraint firstAttribute="width" constant="100" id="FDR-8T-fC8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="FDR-8T-fC8"/>

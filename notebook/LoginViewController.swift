@@ -57,8 +57,17 @@ class LoginViewController: UIViewController {
   }
   
   private func switchToMainContainerViewController() {
-    let mainContainerVC = storyboard?.instantiateInitialViewController()
-    window?.rootViewController = mainContainerVC
+    let loginView = self.view
+    let mainContainerVC = self.storyboard!.instantiateInitialViewController()!
+    self.window?.rootViewController = mainContainerVC
+    mainContainerVC.view.addSubview(loginView)
+    mainContainerVC.view.bringSubviewToFront(loginView)
+    
+    UIView.animateWithDuration(0.5, animations: {
+      loginView.center.y -= UIScreen.mainScreen().bounds.height
+      }) { _ in
+      loginView.removeFromSuperview()
+    }
   }
   
 }

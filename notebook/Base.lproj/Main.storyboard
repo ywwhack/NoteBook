@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="1145.5" y="615"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="MQT-nf-llb">
             <objects>
-                <viewController storyboardIdentifier="Login" id="FkR-AS-M7x" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="FkR-AS-M7x" customClass="LoginViewController" customModule="notebook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BmG-6a-fzE"/>
                         <viewControllerLayoutGuide type="bottom" id="mcL-Qi-EE9"/>
@@ -59,7 +59,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-JI-phA">
                                 <rect key="frame" x="0.0" y="245" width="600" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JAL-qf-a61">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JAL-qf-a61">
                                         <rect key="frame" x="60" y="0.0" width="480" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="FDR-8T-fC8"/>
@@ -72,7 +72,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wdx-Fv-cT7">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wdx-Fv-cT7">
                                         <rect key="frame" x="60" y="40" width="480" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="dGB-D3-NZ6"/>
@@ -85,16 +85,28 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-DA-CJd">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-DA-CJd">
                                         <rect key="frame" x="60" y="80" width="480" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDK-7w-Cib">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
-                                                <state key="normal" title="Sign Up"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="signup:" destination="FkR-AS-M7x" eventType="touchUpInside" id="OLj-nz-54A"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imf-Rh-83I">
-                                                <rect key="frame" x="442" y="0.0" width="38" height="30"/>
-                                                <state key="normal" title="Login"/>
+                                                <rect key="frame" x="245" y="0.0" width="235" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="login:" destination="FkR-AS-M7x" eventType="touchUpInside" id="Brw-qv-1oa"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -129,6 +141,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="loginBtn" destination="imf-Rh-83I" id="51q-9S-hvw"/>
+                        <outlet property="passwordTextField" destination="Wdx-Fv-cT7" id="w6U-Lu-EIJ"/>
+                        <outlet property="signupBtn" destination="BDK-7w-Cib" id="74H-gr-agp"/>
+                        <outlet property="usernameTextField" destination="JAL-qf-a61" id="gp8-Ry-ESY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciz-bx-BBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

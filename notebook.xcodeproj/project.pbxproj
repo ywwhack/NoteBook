@@ -23,6 +23,7 @@
 		587EC3C71CC5C38B003018CF /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587EC3C61CC5C38B003018CF /* User+CoreDataProperties.swift */; };
 		587EC3CA1CC5C6DE003018CF /* Note.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 587EC3C81CC5C6DE003018CF /* Note.storyboard */; };
 		587EC3CC1CC5C73B003018CF /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 587EC3CB1CC5C73B003018CF /* Group.storyboard */; };
+		587EC3CF1CC5D182003018CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587EC3CE1CC5D182003018CF /* LoginViewController.swift */; };
 		5880C2B61CC08E7D0015CF6F /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2B51CC08E7D0015CF6F /* AddGroupViewController.swift */; };
 		5880C2BA1CC0CC060015CF6F /* AddGroupMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2B91CC0CC060015CF6F /* AddGroupMemberViewController.swift */; };
 		5880C2C11CC0DD3B0015CF6F /* dataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2BB1CC0DD3B0015CF6F /* dataModel.swift */; };
@@ -53,6 +54,7 @@
 		587EC3C61CC5C38B003018CF /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "notebook/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		587EC3C91CC5C6DE003018CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Note.storyboard; sourceTree = "<group>"; };
 		587EC3CB1CC5C73B003018CF /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
+		587EC3CE1CC5D182003018CF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5880C2B51CC08E7D0015CF6F /* AddGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		5880C2B91CC0CC060015CF6F /* AddGroupMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupMemberViewController.swift; sourceTree = "<group>"; };
 		5880C2BB1CC0DD3B0015CF6F /* dataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = dataModel.swift; path = notebook/dataModel.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				5880C2B91CC0CC060015CF6F /* AddGroupMemberViewController.swift */,
 				580709A81CC4892000D1EC88 /* GroupDetailViewController.swift */,
 				58A03E1A1CC4C3D100D92BC9 /* ShareToGroupViewController.swift */,
+				587EC3CE1CC5D182003018CF /* LoginViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				583B8D531CBD128800E47D6A /* notebook.xcdatamodeld in Sources */,
 				583B8D661CBD207600E47D6A /* AddNoteViewController.swift in Sources */,
 				5880C2C31CC0DD3B0015CF6F /* Group.swift in Sources */,
+				587EC3CF1CC5D182003018CF /* LoginViewController.swift in Sources */,
 				5880C2C11CC0DD3B0015CF6F /* dataModel.swift in Sources */,
 				581F75551CBF395F00DAB7A5 /* ImagePresentationViewController.swift in Sources */,
 				587EC3C71CC5C38B003018CF /* User+CoreDataProperties.swift in Sources */,

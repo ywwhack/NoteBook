@@ -9,27 +9,22 @@
 import UIKit
 import Alamofire
 
-class GroupsViewController: UITableViewController {
+class GroupListViewController: UITableViewController {
   
   var dataModel = DataModel.sharedDataModel()
   var groups = [Group]()
   var userIsLogin = false
   
-  @IBOutlet weak var loginView: UIView!
-  @IBOutlet weak var usernameTextFiled: UITextField!
-  @IBOutlet weak var passwordTextFiled: UITextField!
   @IBOutlet weak var logoutView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // congfigure UI
-    loginView.backgroundColor = UIColor.clearColor()
     logoutView.backgroundColor = UIColor.clearColor()
     
     if dataModel.username != nil {
       userIsLogin = true
-      loginView.hidden = true
     }else {
       logoutView.hidden = true
     }
@@ -80,46 +75,20 @@ class GroupsViewController: UITableViewController {
     presentViewController(alertController, animated: true, completion: nil)
   }
   
-  @IBAction func signUp(sender: UIButton) {
-    if let username = usernameTextFiled.text, password = passwordTextFiled.text {
-      RemoteResource.signupWithUsername(username, password: password) { userInfoResult in
-        switch userInfoResult {
-        case .Success:
-          self.dataModel.username = username
-          self.updateUI()
-        case .Failed(let reason):
-          print(reason)
-        }
-      }
-    }
-  }
-  
-  @IBAction func Login(sender: UIButton) {
-    if let username = usernameTextFiled.text, password = passwordTextFiled.text {
-      RemoteResource.loginWithUsername(username, password: password) { userInfoResult in
-        switch userInfoResult {
-        case .Success:
-          self.dataModel.username = username
-          self.updateUI()
-        case .Failed(let reason):
-          print(reason)
-        }
-      }
-    }
-  }
-  
   @IBAction func logout(sender: UIButton) {
     dataModel.username = nil
     userIsLogin = false
+    
+    let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+    UIApplication.sharedApplication().keyWindow?.rootViewController = loginVC
+    
     updateUI()
   }
   
   func updateUI() {
     if dataModel.username != nil {
-      loginView.hidden = true
       logoutView.hidden = false
     }else {
-      loginView.hidden = false
       logoutView.hidden = true
     }
     tableView.reloadData()

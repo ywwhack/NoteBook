@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var signupBtn: UIButton!
   @IBOutlet weak var loginBtn: UIButton!
   
-  var window: UIWindow!
+  var window = UIApplication.sharedApplication().keyWindow!
   
   override func viewDidLoad() {
     super.viewDidLoad()

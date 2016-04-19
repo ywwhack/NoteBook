@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if dataModel.username == nil {
       let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login") as! LoginViewController
       window?.rootViewController = loginVC
-      loginVC.window = window!
     }
     return true
   }

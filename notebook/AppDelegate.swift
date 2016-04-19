@@ -18,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     print(dataModel.applicationDocumentsDirectory)
     if dataModel.username == nil {
-      let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+      let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login") as! LoginViewController
       window?.rootViewController = loginVC
+      loginVC.window = window!
     }
     return true
   }

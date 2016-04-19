@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var signupBtn: UIButton!
   @IBOutlet weak var loginBtn: UIButton!
   
+  var window: UIWindow!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -24,20 +26,37 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func signup(sender: UIButton) {
+    guard let username = usernameTextField.text, password = passwordTextField.text else {
+      return
+    }
+    RemoteResource.signupWithUsername(username, password: password) { requestResult in
+      self.processRequestResult(requestResult, withUsername: username)
+    }
   }
   
   @IBAction func login(sender: UIButton) {
-    
+    guard let username = usernameTextField.text, password = passwordTextField.text else {
+      return
+    }
+    RemoteResource.loginWithUsername(username, password: password) { requestResult in
+      self.processRequestResult(requestResult, withUsername: username)
+    }
   }
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  private func processRequestResult(requestResult: RequestResult, withUsername username: String) {
+    switch requestResult {
+    case .Success:
+      print("success")
+      DataModel.sharedDataModel().username = username
+      switchToMainContainerViewController()
+    case .Failed(let reason):
+      print(reason)
+    }
+  }
+  
+  private func switchToMainContainerViewController() {
+    let mainContainerVC = storyboard?.instantiateInitialViewController()
+    window.rootViewController = mainContainerVC
+  }
   
 }

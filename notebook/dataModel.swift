@@ -85,12 +85,11 @@ class DataModel {
   
   // MARK: - Note related Methods
   func fetchNotes() -> [Note]? {
-    guard let user = user, notes = user.notes else {
+    guard let user = user else {
       print("User is not login")
       return nil
     }
-    
-    return Array(arrayLiteral: notes) as? [Note]
+    return user.getSortedNotes()
   }
   
   func addNote(content content: String, images: [String]) {

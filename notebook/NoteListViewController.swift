@@ -21,7 +21,6 @@ class NoteListViewController: UITableViewController {
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
     if let notes = dataModel.fetchNotes() {
       self.notes = notes
       tableView.reloadData()

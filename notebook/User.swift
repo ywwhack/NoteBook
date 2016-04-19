@@ -10,5 +10,11 @@ import Foundation
 import CoreData
 
 class User: NSManagedObject {
-  
+  func getSortedNotes() -> [Note]? {
+    guard let notes = notes else {
+      return nil
+    }
+    let sortDescriptor = NSSortDescriptor(key: "createAt", ascending: false)
+    return notes.sortedArrayUsingDescriptors([sortDescriptor]) as? [Note]
+  }
 }

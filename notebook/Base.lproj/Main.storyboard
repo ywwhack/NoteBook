@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -31,7 +32,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4p-5J-Cbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1141.5" y="310"/>
+            <point key="canvasLocation" x="1149.5" y="302"/>
         </scene>
         <!--Group-->
         <scene sceneID="Orn-MF-e0y">
@@ -42,6 +43,96 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gc-yb-AYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1145.5" y="615"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MQT-nf-llb">
+            <objects>
+                <viewController storyboardIdentifier="Login" id="FkR-AS-M7x" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BmG-6a-fzE"/>
+                        <viewControllerLayoutGuide type="bottom" id="mcL-Qi-EE9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J7w-8J-r30">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-JI-phA">
+                                <rect key="frame" x="0.0" y="245" width="600" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JAL-qf-a61">
+                                        <rect key="frame" x="60" y="0.0" width="480" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="FDR-8T-fC8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="FDR-8T-fC8"/>
+                                            </mask>
+                                        </variation>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wdx-Fv-cT7">
+                                        <rect key="frame" x="60" y="40" width="480" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="dGB-D3-NZ6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="dGB-D3-NZ6"/>
+                                            </mask>
+                                        </variation>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-DA-CJd">
+                                        <rect key="frame" x="60" y="80" width="480" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDK-7w-Cib">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
+                                                <state key="normal" title="Sign Up"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imf-Rh-83I">
+                                                <rect key="frame" x="442" y="0.0" width="38" height="30"/>
+                                                <state key="normal" title="Login"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0A7-DA-CJd" firstAttribute="width" secondItem="Wdx-Fv-cT7" secondAttribute="width" id="EY1-dR-6ZJ"/>
+                                    <constraint firstItem="Wdx-Fv-cT7" firstAttribute="width" secondItem="JAL-qf-a61" secondAttribute="width" id="hU8-ri-Eee"/>
+                                    <constraint firstItem="BDK-7w-Cib" firstAttribute="width" secondItem="Wdx-Fv-cT7" secondAttribute="width" id="kKB-eU-TYL"/>
+                                    <constraint firstItem="JAL-qf-a61" firstAttribute="width" secondItem="rRK-JI-phA" secondAttribute="width" multiplier="0.8" id="xkD-Pd-z4f"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kKB-eU-TYL"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rRK-JI-phA" firstAttribute="centerY" secondItem="J7w-8J-r30" secondAttribute="centerY" id="3bZ-R7-0ls"/>
+                            <constraint firstItem="rRK-JI-phA" firstAttribute="top" secondItem="BmG-6a-fzE" secondAttribute="bottom" id="BfC-XS-Y8C"/>
+                            <constraint firstItem="rRK-JI-phA" firstAttribute="leading" secondItem="J7w-8J-r30" secondAttribute="leading" id="Ruw-fH-6Jd"/>
+                            <constraint firstItem="mcL-Qi-EE9" firstAttribute="top" secondItem="rRK-JI-phA" secondAttribute="bottom" id="TfJ-BU-e1e"/>
+                            <constraint firstItem="rRK-JI-phA" firstAttribute="centerX" secondItem="J7w-8J-r30" secondAttribute="centerX" id="VWi-8R-PTh"/>
+                            <constraint firstAttribute="trailing" secondItem="rRK-JI-phA" secondAttribute="trailing" id="v3U-yb-wir"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BfC-XS-Y8C"/>
+                                <exclude reference="VWi-8R-PTh"/>
+                                <exclude reference="TfJ-BU-e1e"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ciz-bx-BBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-115" y="-182"/>
         </scene>
     </scenes>
 </document>

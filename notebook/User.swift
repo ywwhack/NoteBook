@@ -7,8 +7,8 @@
 //
 
 import Foundation
+import CoreData
 
-struct User {
-  let name: String
-  let groups: [String]
+class User: NSManagedObject {
+  
 }

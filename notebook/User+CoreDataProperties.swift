@@ -1,5 +1,5 @@
 //
-//  Note+CoreDataProperties.swift
+//  User+CoreDataProperties.swift
 //  notebook
 //
 //  Created by iYww on 16/4/19.
@@ -12,12 +12,9 @@
 import Foundation
 import CoreData
 
-extension Note {
+extension User {
 
-    @NSManaged var content: String
-    @NSManaged var createAt: NSTimeInterval
-    @NSManaged var groupname: String?
-    @NSManaged var images: NSObject?
-    @NSManaged var owner: User
+    @NSManaged var name: String
+    @NSManaged var notes: NSSet?
 
 }

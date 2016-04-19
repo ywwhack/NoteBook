@@ -110,6 +110,7 @@ class GroupsViewController: UITableViewController {
   
   @IBAction func logout(sender: UIButton) {
     dataModel.username = nil
+    userIsLogin = false
     updateUI()
   }
   

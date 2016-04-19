@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var signupBtn: UIButton!
   @IBOutlet weak var loginBtn: UIButton!
   
-  var window = UIApplication.sharedApplication().keyWindow!
+  var window: UIWindow?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     // configure UI
     signupBtn.layer.cornerRadius = 5.0
     loginBtn.layer.cornerRadius = 5.0
+    
+    window = (UIApplication.sharedApplication().delegate as! AppDelegate).window
   }
   
   @IBAction func signup(sender: UIButton) {
@@ -56,7 +58,7 @@ class LoginViewController: UIViewController {
   
   private func switchToMainContainerViewController() {
     let mainContainerVC = storyboard?.instantiateInitialViewController()
-    window.rootViewController = mainContainerVC
+    window?.rootViewController = mainContainerVC
   }
   
 }

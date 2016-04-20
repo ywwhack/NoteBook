@@ -83,6 +83,8 @@ class ShareToGroupViewController: UITableViewController {
         switch requestResult {
         case .Success:
           noteDetailVC.note.groupname = group.name
+          noteDetailVC.detailLabel.text = group.name
+          noteDetailVC.tableView.reloadData()
           noteDetailVC.dataModel.saveContext()
           print("success")
         case .Failed(let reason):

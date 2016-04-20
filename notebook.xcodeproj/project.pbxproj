@@ -181,6 +181,7 @@
 				583B8D651CBD207600E47D6A /* AddNoteViewController.swift */,
 				583B8D691CBE1E9400E47D6A /* NoteDetailViewController.swift */,
 				581F75541CBF395F00DAB7A5 /* ImagePresentationViewController.swift */,
+				58A03E1A1CC4C3D100D92BC9 /* ShareToGroupViewController.swift */,
 			);
 			name = note;
 			sourceTree = "<group>";
@@ -192,7 +193,6 @@
 				5880C2B51CC08E7D0015CF6F /* AddGroupViewController.swift */,
 				5880C2B91CC0CC060015CF6F /* AddGroupMemberViewController.swift */,
 				580709A81CC4892000D1EC88 /* GroupDetailViewController.swift */,
-				58A03E1A1CC4C3D100D92BC9 /* ShareToGroupViewController.swift */,
 			);
 			name = group;
 			sourceTree = "<group>";

@@ -30,18 +30,13 @@ class NoteDetailViewController: UITableViewController {
         constraint.constant = heightForMessage(content)
       }
     }
-    
-    imageNames = note.images as! [String]
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
     if let groupname = note.groupname {
       detailLabel.text = groupname
     }else {
       detailLabel.text = nil
     }
+    
+    imageNames = note.images as! [String]
   }
   
   func heightForMessage(message: String) -> CGFloat {

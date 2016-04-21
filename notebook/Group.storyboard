@@ -14,27 +14,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="lFS-BE-vtR">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtU-eB-tGu">
-                                    <rect key="frame" x="276" y="7" width="48" height="30"/>
-                                    <state key="normal" title="Logout"/>
-                                    <connections>
-                                        <action selector="logout:" destination="zFI-Mk-458" eventType="touchUpInside" id="1ei-uX-xF1"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="RtU-eB-tGu" firstAttribute="centerX" secondItem="lFS-BE-vtR" secondAttribute="centerX" id="O1E-Ml-KO6"/>
-                                <constraint firstItem="RtU-eB-tGu" firstAttribute="centerY" secondItem="lFS-BE-vtR" secondAttribute="centerY" id="g4n-Am-b9z"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GroupCell" textLabel="xgA-J4-gb5" style="IBUITableViewCellStyleDefault" id="4PP-H0-PHG">
-                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PP-H0-PHG" id="kx3-69-Lj0">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -53,6 +35,27 @@
                                     <segue destination="iPx-DK-g6j" kind="show" identifier="ShowGroupDetail" id="Kin-DG-Wig"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogoutCell" id="LEM-kL-JK0">
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LEM-kL-JK0" id="ePI-3U-ebW">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEm-hX-tCe">
+                                            <rect key="frame" x="274.5" y="6" width="51" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="Logout">
+                                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yEm-hX-tCe" firstAttribute="centerX" secondItem="ePI-3U-ebW" secondAttribute="centerX" id="Ale-Y4-jyw"/>
+                                        <constraint firstItem="yEm-hX-tCe" firstAttribute="centerY" secondItem="ePI-3U-ebW" secondAttribute="centerY" id="GAd-oR-VOa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="zFI-Mk-458" id="mUu-zO-RdX"/>
@@ -66,9 +69,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="logoutView" destination="lFS-BE-vtR" id="X5N-i6-ctH"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhE-r6-zAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

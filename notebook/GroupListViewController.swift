@@ -11,30 +11,24 @@ import Alamofire
 
 class GroupListViewController: UITableViewController {
   
+  enum SectionInfo {
+    case OnlyLogoutSection
+    case BothLogoutAndGroupsSection
+  }
+  
   var dataModel = DataModel.sharedDataModel()
   var groups = [Group]()
-  var userIsLogin = false
-  
-  @IBOutlet weak var logoutView: UIView!
+  var sectionInfo = SectionInfo.OnlyLogoutSection
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // congfigure UI
-    logoutView.backgroundColor = UIColor.clearColor()
-    
-    if dataModel.username != nil {
-      userIsLogin = true
-    }else {
-      logoutView.hidden = true
-    }
     
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    if userIsLogin {
+    if dataModel.username != nil {
       RemoteResource.getAllGroups { requestResult in
         switch requestResult {
         case .Success(let result):
@@ -42,6 +36,9 @@ class GroupListViewController: UITableViewController {
             return
           }
           self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
+          }
+          if !groups.isEmpty {
+            self.sectionInfo = .BothLogoutAndGroupsSection
           }
           self.tableView.reloadData()
         case .Failed(let reason):
@@ -75,9 +72,8 @@ class GroupListViewController: UITableViewController {
     presentViewController(alertController, animated: true, completion: nil)
   }
   
-  @IBAction func logout(sender: UIButton) {
+  @IBAction func logout() {
     dataModel.username = nil
-    userIsLogin = false
     
     switchToLoginViewController()
     updateUI()
@@ -103,28 +99,51 @@ class GroupListViewController: UITableViewController {
   }
   
   func updateUI() {
-    if dataModel.username != nil {
-      logoutView.hidden = false
-    }else {
-      logoutView.hidden = true
-    }
     tableView.reloadData()
   }
   
   // MARK: - Table view data source
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return userIsLogin ? 1 : 0
+    switch sectionInfo {
+    case .OnlyLogoutSection: return 1
+    case .BothLogoutAndGroupsSection: return 2
+    }
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return groups.count
+    switch sectionInfo {
+    case .OnlyLogoutSection:
+      return 1
+    case .BothLogoutAndGroupsSection:
+      return section == 0 ? groups.count : 1
+    }
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath)
+    let cell: UITableViewCell
     
-    cell.textLabel?.text = groups[indexPath.row].name
+    switch sectionInfo {
+    case .OnlyLogoutSection:
+      cell = cellForLogoutAtIndexPath(indexPath)
+    case .BothLogoutAndGroupsSection:
+      if indexPath.section == 0 {
+        cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = groups[indexPath.row].name
+      }else {
+        cell = cellForLogoutAtIndexPath(indexPath)
+      }
+    }
+    
+    return cell
+  }
+  
+  private func cellForLogoutAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("LogoutCell", forIndexPath: indexPath)
+    let logoutBtn = cell.viewWithTag(1000) as! UIButton
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GroupListViewController.logout))
+    logoutBtn.addGestureRecognizer(tapGestureRecognizer)
     
     return cell
   }

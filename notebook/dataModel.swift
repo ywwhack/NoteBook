@@ -13,6 +13,9 @@ import Alamofire
 class DataModel {
   
   lazy var coreDataStack = CoreDataStack()
+  lazy var applicationDocumentsDirectory: NSURL = {
+    return self.coreDataStack.applicationDocumentsDirectory
+  }()
   
   // MARK: - sharedDataModel
   private static var dataModel: DataModel = {

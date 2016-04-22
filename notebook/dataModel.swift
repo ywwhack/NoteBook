@@ -12,6 +12,8 @@ import Alamofire
 
 class DataModel {
   
+  lazy var coreDataStack = CoreDataStack()
+  
   // MARK: - sharedDataModel
   private static var dataModel: DataModel = {
     return DataModel()
@@ -19,58 +21,6 @@ class DataModel {
   
   static func sharedDataModel() -> DataModel {
     return dataModel
-  }
-  
-  // MARK: - Core Data stack
-  lazy var applicationDocumentsDirectory: NSURL = {
-    let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-    return urls[urls.count-1]
-  }()
-  
-  private lazy var managedObjectModel: NSManagedObjectModel = {
-    let modelURL = NSBundle.mainBundle().URLForResource("notebook", withExtension: "momd")!
-    return NSManagedObjectModel(contentsOfURL: modelURL)!
-  }()
-  
-  private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
-    var failureReason = "There was an error creating or loading the application's saved data."
-    do {
-      try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
-    } catch {
-      var dict = [String: AnyObject]()
-      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-      dict[NSLocalizedFailureReasonErrorKey] = failureReason
-      
-      dict[NSUnderlyingErrorKey] = error as NSError
-      let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-      NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-      abort()
-    }
-    
-    return coordinator
-  }()
-  
-  lazy var managedObjectContext: NSManagedObjectContext = {
-    let coordinator = self.persistentStoreCoordinator
-    var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-    managedObjectContext.persistentStoreCoordinator = coordinator
-    return managedObjectContext
-  }()
-  
-  // MARK: - Core Data Saving support
-  
-  func saveContext () {
-    if managedObjectContext.hasChanges {
-      do {
-        try managedObjectContext.save()
-      } catch {
-        let nserror = error as NSError
-        NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-        abort()
-      }
-    }
   }
   
   // MARK: - Note related Methods
@@ -83,19 +33,19 @@ class DataModel {
   }
   
   func addNote(content content: String, images: [String]) {
-    let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: managedObjectContext) as! Note
+    let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: coreDataStack.managedObjectContext) as! Note
     newNote.content = content
     newNote.createAt = NSDate().timeIntervalSince1970
     newNote.images = images
     newNote.owner = user!
-    saveContext()
+    coreDataStack.saveContext()
   }
   
   // MAKR: - User related methods
   private func createNewUser(username: String) -> User {
-    let newUser = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: managedObjectContext) as! User
+    let newUser = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: coreDataStack.managedObjectContext) as! User
     newUser.name = username
-    saveContext()
+    coreDataStack.saveContext()
     
     return newUser
   }
@@ -105,7 +55,7 @@ class DataModel {
       let fetchRequest = NSFetchRequest(entityName: "User")
       fetchRequest.predicate = NSPredicate(format: "name=%@", username)
       do {
-        let users = try managedObjectContext.executeFetchRequest(fetchRequest) as! [User]
+        let users = try coreDataStack.managedObjectContext.executeFetchRequest(fetchRequest) as! [User]
         if users.isEmpty {
           return createNewUser(username)
         }else {

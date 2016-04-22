@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var dataModel = DataModel.sharedDataModel()
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    print(dataModel.applicationDocumentsDirectory)
+    print(dataModel.coreDataStack.applicationDocumentsDirectory)
     if dataModel.username == nil {
       let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login") as! LoginViewController
       window?.rootViewController = loginVC
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func applicationWillTerminate(application: UIApplication) {
-    dataModel.saveContext()
+    dataModel.coreDataStack.saveContext()
   }  
 
 }

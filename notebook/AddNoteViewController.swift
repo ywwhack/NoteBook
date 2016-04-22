@@ -65,7 +65,7 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     do {
       let imageFileName = "\(queryObject["id"]!).jpg"
-      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
+      let url = dataModel.coreDataStack.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
       try data?.writeToURL(url, options: .AtomicWrite)
       imageNames.append(imageFileName)
       collectionView.reloadData()

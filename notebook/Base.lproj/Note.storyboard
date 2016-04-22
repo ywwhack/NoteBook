@@ -189,7 +189,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Message goes here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgN-Dt-KKy">
-                                                    <rect key="frame" x="23" y="8" width="569" height="50"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="RM8-iQ-o89"/>
@@ -206,7 +206,7 @@
                                                     </variation>
                                                 </textView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-7u-wlJ">
-                                                    <rect key="frame" x="23" y="68" width="569" height="203"/>
+                                                    <rect key="frame" x="15" y="68" width="577" height="203"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="Qk6-pT-jGS"/>
@@ -254,16 +254,18 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="topMargin" secondItem="XgN-Dt-KKy" secondAttribute="top" id="0mU-X3-4n5"/>
-                                                <constraint firstItem="XgN-Dt-KKy" firstAttribute="leading" secondItem="kVk-Ci-Gv8" secondAttribute="leadingMargin" constant="15" id="9Pq-iO-MVh"/>
+                                                <constraint firstItem="XgN-Dt-KKy" firstAttribute="leading" secondItem="kVk-Ci-Gv8" secondAttribute="leadingMargin" id="9Pq-iO-MVh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XgN-Dt-KKy" secondAttribute="trailing" id="Rh2-J7-4N6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Lja-7u-wlJ" secondAttribute="bottom" id="bck-cJ-8E3"/>
                                                 <constraint firstItem="Lja-7u-wlJ" firstAttribute="trailing" secondItem="XgN-Dt-KKy" secondAttribute="trailing" id="dSW-es-Hd7"/>
                                                 <constraint firstItem="Lja-7u-wlJ" firstAttribute="leading" secondItem="XgN-Dt-KKy" secondAttribute="leading" id="fHr-My-ya4"/>
+                                                <constraint firstItem="Lja-7u-wlJ" firstAttribute="leading" secondItem="kVk-Ci-Gv8" secondAttribute="leadingMargin" constant="7" id="lZu-YC-RjQ"/>
                                                 <constraint firstItem="Lja-7u-wlJ" firstAttribute="top" secondItem="XgN-Dt-KKy" secondAttribute="bottom" constant="10" id="oNA-3l-Rah"/>
                                                 <constraint firstItem="Lja-7u-wlJ" firstAttribute="top" secondItem="XgN-Dt-KKy" secondAttribute="top" id="yXd-YZ-nEe"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="fHr-My-ya4"/>
                                                     <exclude reference="yXd-YZ-nEe"/>
                                                 </mask>
                                             </variation>

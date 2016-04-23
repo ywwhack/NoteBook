@@ -17,6 +17,11 @@ class DataModel {
     return self.coreDataStack.applicationDocumentsDirectory
   }()
   
+  // MARK: - init
+  init() {
+    registerDefaults()
+  }
+  
   // MARK: - sharedDataModel
   private static var dataModel: DataModel = {
     return DataModel()
@@ -74,12 +79,27 @@ class DataModel {
   
   var username: String? {
     get {
-      return userDefaults.valueForKey("Username") as? String
+      // mock username: zank
+      return "zank"
+      // return userDefaults.valueForKey("Username") as? String
     }
     
     set {
       userDefaults.setObject(newValue, forKey: "Username")
     }
+  }
+  
+  var photoId: Int {
+    let nextPhotoId = (userDefaults.valueForKey("PhotoId") as! Int) + 1
+    userDefaults.setObject(nextPhotoId, forKey: "PhotoId")
+    return nextPhotoId
+  }
+  
+  func registerDefaults() {
+    let defaults = [
+      "PhotoId": 0
+    ]
+    userDefaults.registerDefaults(defaults)
   }
   
   private var userDefaults: NSUserDefaults = {

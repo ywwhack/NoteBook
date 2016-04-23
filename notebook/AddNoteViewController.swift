@@ -32,10 +32,16 @@ class AddNoteViewController: UITableViewController {
   }
   
   func imageViewDidTap() {
-    let alertController = UIAlertController(title: "Select a media", message: nil, preferredStyle: .ActionSheet)
+    let imagePicker = UIImagePickerController()
+    imagePicker.delegate = self
+    
+    let alertController = UIAlertController(title: "Source Type", message: nil, preferredStyle: .ActionSheet)
     let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .Default) { _ in
-      let imagePicker = UIImagePickerController()
-      imagePicker.delegate = self
+      imagePicker.sourceType = .PhotoLibrary
+      self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    let cameraAction = UIAlertAction(title: "Camera", style: .Default) { _ in
+      imagePicker.sourceType = .Camera
       self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { _ in
@@ -43,6 +49,9 @@ class AddNoteViewController: UITableViewController {
     }
     alertController.addAction(photoLibraryAction)
     alertController.addAction(cancelAction)
+    if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+      alertController.addAction(cameraAction)
+    }
     
     presentViewController(alertController, animated: true, completion: nil)
   }
@@ -68,13 +77,19 @@ class AddNoteViewController: UITableViewController {
 // MARK: - UIImagePickerController Delegate
 extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-    let query = (info[UIImagePickerControllerReferenceURL] as! NSURL).query
-    let queryObject = parseQuery(query!)
+    var imageFileName = ""
+    if let url = info[UIImagePickerControllerReferenceURL] as? NSURL {
+      let query = url.query
+      let queryObject = parseQuery(query!)
+      imageFileName = "\(queryObject["id"]!).jpg"
+    }else {
+      imageFileName = "\(dataModel.photoId).jpg"
+    }
+    
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
     let data = UIImageJPEGRepresentation(image, 0.9)
     
     do {
-      let imageFileName = "\(queryObject["id"]!).jpg"
       let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
       try data?.writeToURL(url, options: .AtomicWrite)
       imageNames.append(imageFileName)

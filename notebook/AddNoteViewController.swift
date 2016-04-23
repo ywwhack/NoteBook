@@ -32,9 +32,19 @@ class AddNoteViewController: UITableViewController {
   }
   
   func imageViewDidTap() {
-    let imagePicker = UIImagePickerController()
-    imagePicker.delegate = self
-    presentViewController(imagePicker, animated: true, completion: nil)
+    let alertController = UIAlertController(title: "Select a media", message: nil, preferredStyle: .ActionSheet)
+    let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .Default) { _ in
+      let imagePicker = UIImagePickerController()
+      imagePicker.delegate = self
+      self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { _ in
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    alertController.addAction(photoLibraryAction)
+    alertController.addAction(cancelAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
   }
   
   // MARK: - UITableView Delegate

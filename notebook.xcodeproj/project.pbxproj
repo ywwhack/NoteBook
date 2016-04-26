@@ -32,6 +32,7 @@
 		5880C2C51CC0DD3B0015CF6F /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2BF1CC0DD3B0015CF6F /* Note+CoreDataProperties.swift */; };
 		5880C2C61CC0DD3B0015CF6F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C2C01CC0DD3B0015CF6F /* User.swift */; };
 		58A03E1B1CC4C3D100D92BC9 /* ShareToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A03E1A1CC4C3D100D92BC9 /* ShareToGroupViewController.swift */; };
+		58C8D9421CCF3E8E00F7D041 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C8D9411CCF3E8D00F7D041 /* URLManager.swift */; };
 		58D8A48F1CCA0E0B00A6A7CC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8A48E1CCA0E0B00A6A7CC /* CoreDataStack.swift */; };
 		E8ABC03C07C7D4E6A81FE747 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7857D7F3AA2846C00A78E0 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		5880C2BF1CC0DD3B0015CF6F /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataProperties.swift"; path = "notebook/Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5880C2C01CC0DD3B0015CF6F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = notebook/User.swift; sourceTree = "<group>"; };
 		58A03E1A1CC4C3D100D92BC9 /* ShareToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToGroupViewController.swift; sourceTree = "<group>"; };
+		58C8D9411CCF3E8D00F7D041 /* URLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		58D8A48E1CCA0E0B00A6A7CC /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreDataStack.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6BC25E3F53F96671C9B023A7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6F7857D7F3AA2846C00A78E0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			children = (
 				583A0E331CBE267400F44FAC /* UIImage+nameInDocuments.swift */,
 				5871B0041CC21ADA00A5B6BD /* RemoteResource.swift */,
+				58C8D9411CCF3E8D00F7D041 /* URLManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				587EC3C71CC5C38B003018CF /* User+CoreDataProperties.swift in Sources */,
 				5880C2C41CC0DD3B0015CF6F /* Note.swift in Sources */,
 				5880C2BA1CC0CC060015CF6F /* AddGroupMemberViewController.swift in Sources */,
+				58C8D9421CCF3E8E00F7D041 /* URLManager.swift in Sources */,
 				5871B0051CC21ADA00A5B6BD /* RemoteResource.swift in Sources */,
 				583B8D4D1CBD128800E47D6A /* NoteListViewController.swift in Sources */,
 				583B8D4B1CBD128800E47D6A /* AppDelegate.swift in Sources */,

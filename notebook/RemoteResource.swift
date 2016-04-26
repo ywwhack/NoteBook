@@ -19,16 +19,16 @@ enum RequestResult {
 struct RemoteResource {
   // MARK: - User related methods
   static func loginWithUsername(username: String, password: String, completion: RequestResult -> ()) {
-    requestWithMethod(.GET, urlString: "http://localhost:3000/login", withUsername: username, andPassword: password, completion: completion)
+    requestWithMethod(.GET, urlString: URLManager.login, withUsername: username, andPassword: password, completion: completion)
   }
   
   static func signupWithUsername(username: String, password: String, completion: RequestResult -> ()) {
-    requestWithMethod(.POST, urlString: "http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
+    requestWithMethod(.POST, urlString: URLManager.signup, withUsername: username, andPassword: password, completion: completion)
   }
   
   static func searchUserWithUsername(username: String, completion: RequestResult -> ()) {
     let request = Alamofire
-      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
+      .request(.GET, URLManager.searchUser, parameters: ["username": username])
     processRequest(request, completion: completion)
   }
         
@@ -41,30 +41,30 @@ struct RemoteResource {
   // MARK: - Group Related Methods
   static func addMember(membername: String, ToGroup groupId: String, completion: RequestResult -> ()) {
     let request = Alamofire
-      .request(.POST, "http://localhost:3000/add_group_member", parameters: ["membername": membername, "groupId": groupId])
+      .request(.POST, URLManager.addGroupMember, parameters: ["membername": membername, "groupId": groupId])
     processRequest(request, completion: completion)
   }
   
   static func createGroup(groupname: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    let request = Alamofire.request(.POST, "http://localhost:3000/create_group", parameters: ["username": dataModel.username!, "groupname": groupname])
+    let request = Alamofire.request(.POST, URLManager.createGroup, parameters: ["username": dataModel.username!, "groupname": groupname])
     processRequest(request, completion: completion)
   }
   
   static func getAllGroups(completion completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    let request = Alamofire.request(.GET, "http://localhost:3000/get_all_groups", parameters: ["username": dataModel.username!])
+    let request = Alamofire.request(.GET, URLManager.getAllGroups, parameters: ["username": dataModel.username!])
     processRequest(request, completion: completion)
   }
   
   static func getGroupDetailWithId(groupId: String, completion: RequestResult -> ()) {
-    let request = Alamofire.request(.GET, "http://localhost:3000/get_group_detail", parameters: ["groupId": groupId])
+    let request = Alamofire.request(.GET, URLManager.getGroupDetail, parameters: ["groupId": groupId])
     processRequest(request, completion: completion)
   }
   
   static func addNote(note: String, toGroup groupId: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    let request = Alamofire.request(.POST, "http://localhost:3000/add_note_to_group", parameters: ["username": dataModel.username!, "noteContent": note, "groupId": groupId])
+    let request = Alamofire.request(.POST, URLManager.addNoteToGroup, parameters: ["username": dataModel.username!, "noteContent": note, "groupId": groupId])
     processRequest(request, completion: completion)
   }
   

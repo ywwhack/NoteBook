@@ -57,6 +57,22 @@ class AddNoteViewController: UITableViewController {
     presentViewController(alertController, animated: true, completion: nil)
   }
   
+  func imageViewWillDelete(recognizer: UIGestureRecognizer) {
+    // TODO: - Replace below indexPath with easy, clear way
+    let indexPath = collectionView.indexPathForCell(recognizer.view?.superview?.superview as! UICollectionViewCell)!
+    
+    let alertController = UIAlertController(title: "Delete this image", message: nil, preferredStyle: .ActionSheet)
+    let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) { _ in
+      self.imageNames.removeAtIndex(indexPath.row)
+      self.collectionView.reloadData()
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    alertController.addAction(deleteAction)
+    alertController.addAction(cancelAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
   // MARK: - UITableView Delegate
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -131,6 +147,7 @@ extension AddNoteViewController: UICollectionViewDataSource {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
     
     let imageView = cell.viewWithTag(1000) as! UIImageView
+    
     if indexPath.row == imageNames.count { // `Add Image` with tap gesture
       imageView.image = UIImage(named: "add")
       imageView.userInteractionEnabled = true
@@ -138,8 +155,11 @@ extension AddNoteViewController: UICollectionViewDataSource {
       imageView.addGestureRecognizer(tapGestureRecognizer)
     }else {
       imageView.image = UIImage.nameInDocuments(imageNames[indexPath.row])
+      imageView.userInteractionEnabled = true
+      let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewWillDelete(_:)))
+      imageView.addGestureRecognizer(tapGestureRecognizer)
     }
-  
+    
     return cell
   }
 }

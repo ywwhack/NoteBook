@@ -17,10 +17,18 @@ class NoteListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    updateUI()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
+    if dataModel.hasChanges {
+      updateUI()
+    }
+  }
+  
+  private func updateUI() {
     if let notes = dataModel.fetchNotes() {
       self.notes = notes
       tableView.reloadData()
@@ -35,8 +43,6 @@ class NoteListViewController: UITableViewController {
       }
       let note = notes[indexPath.row]
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
-      noteDetailVC.content = note.content
-      noteDetailVC.imageNames = note.images as! [String]
       noteDetailVC.note = note
     }
   }

@@ -79,7 +79,7 @@ class ShareToGroupViewController: UITableViewController {
     if let selectedGroupIndex = selectedGroupIndex where segue.identifier == "DoneToNoteDetail" {
       let noteDetailVC = segue.destinationViewController as! NoteDetailViewController
       let group = groups[selectedGroupIndex]
-      RemoteResource.addNote(noteDetailVC.content, toGroup: group.id) { requestResult in
+      RemoteResource.addNote(noteDetailVC.note.content, toGroup: group.id) { requestResult in
         switch requestResult {
         case .Success:
           noteDetailVC.note.groupname = group.name

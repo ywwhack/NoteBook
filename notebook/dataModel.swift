@@ -12,10 +12,14 @@ import Alamofire
 
 class DataModel {
   
+  // MARK: - Core Data Stack
   lazy var coreDataStack = CoreDataStack()
   lazy var applicationDocumentsDirectory: NSURL = {
     return self.coreDataStack.applicationDocumentsDirectory
   }()
+  var hasChanges: Bool {
+    return coreDataStack.managedObjectContext.hasChanges
+  }
   
   // MARK: - init
   init() {

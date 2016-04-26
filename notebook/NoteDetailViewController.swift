@@ -15,7 +15,6 @@ class NoteDetailViewController: UITableViewController {
   @IBOutlet weak var detailLabel: UILabel!
   
   var imageNames: [String]!
-  var content: String!
   var dataModel = DataModel.sharedDataModel()
   var note: Note!
   
@@ -23,11 +22,11 @@ class NoteDetailViewController: UITableViewController {
     super.viewDidLoad()
     
     // configure UI
-    messageTextView.text = content
+    messageTextView.text = note.content
     messageTextView.font = UIFont.systemFontOfSize(16)
     messageTextView.constraints.forEach { constraint in
       if constraint.firstAttribute == .Height {
-        constraint.constant = heightForMessage(content)
+        constraint.constant = heightForMessage(note.content)
       }
     }
     if let groupname = note.groupname {

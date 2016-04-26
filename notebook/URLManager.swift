@@ -38,7 +38,7 @@ struct DevelopmentURLs: URLs {
 struct URLManager {
   static let urlType = URLType.Development
   
-  static var urls: URLs {
+  private static var urls: URLs {
     switch urlType {
     case .Development: return DevelopmentURLs()
     case .Distribution: return DevelopmentURLs() // TODO: - Replace the with real host url

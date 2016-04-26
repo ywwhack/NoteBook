@@ -20,6 +20,7 @@ class AddNoteViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    
   }
   
   @IBAction func cancel(sender: UIBarButtonItem) {
@@ -61,8 +62,16 @@ class AddNoteViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
   
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    if indexPath.section == 1 && indexPath.row == 0 {
+      return heightOfImageView()
+    }else {
+      return 163
+    }
+  }
+  
   // MARK: - Utils
-  func parseQuery(query: String) -> [String: String] {
+  private func parseQuery(query: String) -> [String: String] {
     let queryComponents = query.componentsSeparatedByString("&")
     return queryComponents.reduce([String:String]()) { dict, component -> [String: String] in
       var newDict = dict
@@ -70,6 +79,10 @@ class AddNoteViewController: UITableViewController {
       newDict[dictComponent[0]] = dictComponent[1]
       return newDict
     }
+  }
+  
+  private func heightOfImageView() -> CGFloat {
+    return (UIScreen.mainScreen().bounds.width - 3 * 10) / 4
   }
   
 }
@@ -113,7 +126,7 @@ extension AddNoteViewController: UICollectionViewDataSource {
     // The addition imageView is `Add Image`
     return imageNames.count + 1
   }
-  
+
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath)
     
@@ -128,5 +141,12 @@ extension AddNoteViewController: UICollectionViewDataSource {
     }
   
     return cell
+  }
+}
+
+// MAKR: - Collection view delegate flow layout
+extension AddNoteViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    return CGSizeMake(heightOfImageView(), heightOfImageView())
   }
 }

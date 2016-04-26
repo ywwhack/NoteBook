@@ -25,6 +25,12 @@ struct RemoteResource {
   static func signupWithUsername(username: String, password: String, completion: RequestResult -> ()) {
     requestWithMethod(.POST, urlString: "http://localhost:3000/signup", withUsername: username, andPassword: password, completion: completion)
   }
+  
+  static func searchUserWithUsername(username: String, completion: RequestResult -> ()) {
+    let request = Alamofire
+      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
+    processRequest(request, completion: completion)
+  }
         
   private static func requestWithMethod(method: Alamofire.Method, urlString: String, withUsername username: String, andPassword password: String, completion: RequestResult -> ()) {
     let request = Alamofire

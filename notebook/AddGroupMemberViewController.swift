@@ -86,18 +86,21 @@ extension AddGroupMemberViewController: UISearchBarDelegate {
     searchResult = .Loading
     tableView.reloadData()
     
-    Alamofire
-      .request(.GET, "http://localhost:3000/search_user", parameters: ["username": username])
-      .responseJSON { response in
-        if let result = response.result.value as? [String: AnyObject] {
-          if let code = result["code"] as? Int, userInfo = result["userInfo"] as? [String: AnyObject] where code == 1 {
-            self.searchResult = .matchedUsers([userInfo["name"] as! String])
-          }else {
-            self.searchResult = .NotFound
-          }
-          self.tableView.reloadData()
+    RemoteResource.searchUserWithUsername(username) { requestResult in
+      switch requestResult {
+      case .Success(let result):
+        if let code = result["code"] as? Int, userInfo = result["userInfo"] as? [String: AnyObject] where code == 1 {
+          self.searchResult = .matchedUsers([userInfo["name"] as! String])
+        }else {
+          self.searchResult = .NotFound
         }
+      case .Failed:
+        self.searchResult = .NotFound
       }
+      
+      self.tableView.reloadData()
+    }
+    
   }
   
 }

@@ -13,6 +13,8 @@ class ShareToGroupViewController: UITableViewController {
   var groups = [Group]()
   var selectedGroupIndex: Int?
   
+  @IBOutlet weak var doneBtn: UIBarButtonItem!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -58,6 +60,7 @@ class ShareToGroupViewController: UITableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
+    // Row configuration
     if let groupIndex = selectedGroupIndex {
       if groupIndex != indexPath.row {
         let oldSelectedGroupIndex = groupIndex
@@ -71,6 +74,13 @@ class ShareToGroupViewController: UITableViewController {
     }else {
       selectedGroupIndex = indexPath.row
       tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }
+    
+    // Done btn configuration
+    if selectedGroupIndex != nil {
+      doneBtn.enabled = true
+    }else {
+      doneBtn.enabled = false
     }
   }
   

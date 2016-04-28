@@ -13,13 +13,13 @@ class AddNoteViewController: UITableViewController {
   
   var dataModel = DataModel.sharedDataModel()
   var imageNames = [String]()
+  var images = [UIImage]()
   
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var collectionView: UICollectionView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     
   }
   
@@ -29,7 +29,7 @@ class AddNoteViewController: UITableViewController {
   
   @IBAction func done(sender: UIBarButtonItem) {
     navigationController?.popViewControllerAnimated(true)
-    dataModel.addNote(content: messageTextView.text!, images: imageNames)
+    dataModel.addNote(content: messageTextView.text!, imageNames: imageNames, images: images)
   }
   
   func imageViewDidTap() {
@@ -116,17 +116,9 @@ extension AddNoteViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-    let data = UIImageJPEGRepresentation(image, 0.9)
-    
-    do {
-      let url = dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent(imageFileName)
-      try data?.writeToURL(url, options: .AtomicWrite)
-      imageNames.append(imageFileName)
-      collectionView.reloadData()
-    }catch {
-      print("Save image file error \(error)")
-      fatalError()
-    }
+    images.append(image)
+    imageNames.append(imageFileName)
+    collectionView.reloadData()
     
     dismissViewControllerAnimated(true, completion: nil)
   }
@@ -154,7 +146,7 @@ extension AddNoteViewController: UICollectionViewDataSource {
       let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTap))
       imageView.addGestureRecognizer(tapGestureRecognizer)
     }else {
-      imageView.image = UIImage.nameInDocuments(imageNames[indexPath.row])
+      imageView.image = images[indexPath.row]
       imageView.userInteractionEnabled = true
       let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewWillDelete(_:)))
       imageView.addGestureRecognizer(tapGestureRecognizer)

@@ -44,13 +44,21 @@ class DataModel {
     return user.getSortedNotes()
   }
   
-  func addNote(content content: String, images: [String]) {
+  func addNote(content content: String, imageNames: [String], images: [UIImage]) {
     let newNote = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: coreDataStack.managedObjectContext) as! Note
     newNote.content = content
     newNote.createAt = NSDate().timeIntervalSince1970
-    newNote.images = images
+    newNote.images = imageNames
     newNote.owner = user!
-    coreDataStack.saveContext()
+    
+    let dataArr = images.map { UIImageJPEGRepresentation($0, 0.9) }
+    let imageURLArr = imageNames.map { applicationDocumentsDirectory.URLByAppendingPathComponent($0) }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+      for i in 0..<dataArr.count {
+        try! dataArr[i]?.writeToURL(imageURLArr[i], options: .AtomicWrite)
+      }
+      self.coreDataStack.saveContext()
+    }
   }
   
   // MAKR: - User related methods

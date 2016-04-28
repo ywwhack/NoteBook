@@ -14,7 +14,7 @@ class NoteDetailViewController: UITableViewController {
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var detailLabel: UILabel!
   
-  var imageNames: [String]!
+  private var imageNames = [String]()
   var dataModel = DataModel.sharedDataModel()
   var note: Note!
   
@@ -38,7 +38,7 @@ class NoteDetailViewController: UITableViewController {
     imageNames = note.images as! [String]
   }
   
-  func heightForMessage(message: String) -> CGFloat {
+  private func heightForMessage(message: String) -> CGFloat {
     return (message as NSString).boundingRectWithSize(CGSizeMake(UIScreen.mainScreen().bounds.width - 20, 1000) , options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16)], context: nil).height
   }
   

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class GroupListViewController: UITableViewController {
   
@@ -19,15 +18,46 @@ class GroupListViewController: UITableViewController {
   var dataModel = DataModel.sharedDataModel()
   var groups = [Group]()
   var sectionInfo = SectionInfo.OnlyLogoutSection
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-  }
+  var doneAction: UIAlertAction?
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
+    updateUI()
+  }
+  
+  @IBAction func addGroup(sender: UIBarButtonItem) {
+    let alertController = UIAlertController(title: "Add Group", message: nil, preferredStyle: .Alert)
+    
+    // configure textfield
+    alertController.addTextFieldWithConfigurationHandler(nil)
+    guard let textFields = alertController.textFields else {
+      return
+    }
+    let groupTextField = textFields[0]
+    groupTextField.delegate = self
+    
+    // configure actions
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    doneAction = UIAlertAction(title: "Done", style: .Default) { _ in
+      RemoteResource.createGroup(groupTextField.text!) { requestResult in
+        switch requestResult {
+        case .Success:
+          print("success")
+          self.updateUI()
+        case .Failed(let reason):
+          print(reason)
+        }
+      }
+    }
+    doneAction!.enabled = false
+    alertController.addAction(cancelAction)
+    alertController.addAction(doneAction!)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  private func updateUI() {
     if dataModel.username != nil {
       RemoteResource.getAllGroups { requestResult in
         switch requestResult {
@@ -48,38 +78,13 @@ class GroupListViewController: UITableViewController {
     }
   }
   
-  @IBAction func addGroup(sender: UIBarButtonItem) {
-    let alertController = UIAlertController(title: "Add Group", message: nil, preferredStyle: .Alert)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-    let doneAction = UIAlertAction(title: "Done", style: .Default) { _ in
-      guard let textFields = alertController.textFields else {
-        return
-      }
-      let groupTextField = textFields[0]
-      RemoteResource.createGroup(groupTextField.text!) { requestResult in
-        switch requestResult {
-        case .Success:
-          print("success")
-        case .Failed(let reason):
-          print(reason)
-        }
-      }
-    }
-    alertController.addAction(cancelAction)
-    alertController.addAction(doneAction)
-    alertController.addTextFieldWithConfigurationHandler(nil)
-    
-    presentViewController(alertController, animated: true, completion: nil)
-  }
-  
   @IBAction func logout() {
     dataModel.username = nil
     
     switchToLoginViewController()
-    updateUI()
   }
   
-  func switchToLoginViewController() {
+  private func switchToLoginViewController() {
     let keyWindow = UIApplication.sharedApplication().keyWindow!
     let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
     let containerVC = keyWindow.rootViewController!
@@ -96,10 +101,6 @@ class GroupListViewController: UITableViewController {
       loginView.removeFromSuperview()
       keyWindow.rootViewController = loginVC
     }
-  }
-  
-  func updateUI() {
-    tableView.reloadData()
   }
   
   // MARK: - Table view data source
@@ -169,4 +170,17 @@ class GroupListViewController: UITableViewController {
     }
   }
   
+}
+
+// MARK: - UITextField delegate
+extension GroupListViewController: UITextFieldDelegate {
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    // TODO: - this is suck, replace it with easy way
+    if string == "" && textField.text?.characters.count == 1 {
+      doneAction!.enabled = false
+    }else {
+      doneAction!.enabled = true
+    }
+    return true
+  }
 }

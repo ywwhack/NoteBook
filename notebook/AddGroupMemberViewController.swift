@@ -15,7 +15,7 @@ class AddGroupMemberViewController: UITableViewController {
     case NotSearched
     case Loading
     case NotFound
-    case matchedUsers([String])
+    case MatchedUsers([String])
   }
   
   var dataModel = DataModel.sharedDataModel()
@@ -49,7 +49,7 @@ class AddGroupMemberViewController: UITableViewController {
     switch searchResult {
     case .NotSearched: return 0
     case .NotFound, .Loading: return 1
-    case .matchedUsers(let users): return users.count
+    case .MatchedUsers(let users): return users.count
     }
   }
   
@@ -64,7 +64,7 @@ class AddGroupMemberViewController: UITableViewController {
       cell = tableView.dequeueReusableCellWithIdentifier("LoadingCell", forIndexPath: indexPath)
     case .NotFound:
       cell = tableView.dequeueReusableCellWithIdentifier("NotFoundCell", forIndexPath: indexPath)
-    case .matchedUsers(let users):
+    case .MatchedUsers(let users):
       cell = tableView.dequeueReusableCellWithIdentifier("FriendResultCell", forIndexPath: indexPath)
       let label = cell.viewWithTag(1000) as! UILabel
       // let addButton = cell.viewWithTag(1001) as! UIButton
@@ -90,7 +90,7 @@ extension AddGroupMemberViewController: UISearchBarDelegate {
       switch requestResult {
       case .Success(let result):
         if let code = result["code"] as? Int, userInfo = result["userInfo"] as? [String: AnyObject] where code == 1 {
-          self.searchResult = .matchedUsers([userInfo["name"] as! String])
+          self.searchResult = .MatchedUsers([userInfo["name"] as! String])
         }else {
           self.searchResult = .NotFound
         }

@@ -62,10 +62,24 @@ struct RemoteResource {
     processRequest(request, completion: completion)
   }
   
-  static func addNote(note: String, toGroup groupId: String, completion: RequestResult -> ()) {
+  static func addNote(note: Note, toGroup groupId: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
-    let request = Alamofire.request(.POST, URLManager.addNoteToGroup, parameters: ["username": dataModel.username!, "noteContent": note, "groupId": groupId])
-    processRequest(request, completion: completion)
+    Alamofire.upload(.POST, URLManager.addNoteToGroup, multipartFormData: { multipartFormData in
+      multipartFormData.appendBodyPart(data: encodeString(dataModel.username!), name: "username")
+      multipartFormData.appendBodyPart(data: encodeString(note.content), name: "noteContent")
+      multipartFormData.appendBodyPart(data: encodeString(groupId), name: "groupId")
+      }) { encodingResult in
+        switch encodingResult {
+        case .Success(let request, _, _):
+            processRequest(request, completion: completion)
+        case .Failure:
+          completion(RequestResult.Failed("Encoding Error"))
+        }
+    }
+  }
+  
+  static private func encodeString(content: String) -> NSData {
+    return content.dataUsingEncoding(NSUTF8StringEncoding)!
   }
   
   private static func processRequest(request: Request, completion: RequestResult -> ()) {

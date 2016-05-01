@@ -65,9 +65,19 @@ struct RemoteResource {
   static func addNote(note: Note, toGroup groupId: String, completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
     Alamofire.upload(.POST, URLManager.addNoteToGroup, multipartFormData: { multipartFormData in
+      // body
       multipartFormData.appendBodyPart(data: encodeString(dataModel.username!), name: "username")
       multipartFormData.appendBodyPart(data: encodeString(note.content), name: "noteContent")
       multipartFormData.appendBodyPart(data: encodeString(groupId), name: "groupId")
+      
+      // image files
+      let imageNames = note.images as! [String]
+      let imageURLs = imageNames.map { dataModel.applicationDocumentsDirectory.URLByAppendingPathComponent($0) }
+      imageURLs.forEach { url in
+        let fileNameWithExt = url.lastPathComponent!
+        let filename = fileNameWithExt.componentsSeparatedByString(".")[0]
+        multipartFormData.appendBodyPart(fileURL: url, name: filename)
+      }
       }) { encodingResult in
         switch encodingResult {
         case .Success(let request, _, _):

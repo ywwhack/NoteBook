@@ -53,6 +53,7 @@ struct RemoteResource {
   
   static func getAllGroups(completion completion: RequestResult -> ()) {
     let dataModel = DataModel.sharedDataModel()
+    print(dataModel.username)
     let request = Alamofire.request(.GET, URLManager.getAllGroups, parameters: ["username": dataModel.username!])
     processRequest(request, completion: completion)
   }

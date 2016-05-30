@@ -91,9 +91,7 @@ class DataModel {
   
   var username: String? {
     get {
-      // mock username: zank
-      return "zank"
-      // return userDefaults.valueForKey("Username") as? String
+      return userDefaults.valueForKey("Username") as? String
     }
     
     set {

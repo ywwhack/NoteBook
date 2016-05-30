@@ -21,7 +21,7 @@ protocol URLs {
 
 enum URLType {
   case Development
-  case Distribution
+  case Production
 }
 
 struct DevelopmentURLs: URLs {
@@ -35,13 +35,24 @@ struct DevelopmentURLs: URLs {
   let addNoteToGroup = "http://localhost:3000/add_note_to_group"
 }
 
+struct ProductionURLs: URLs {
+  let login = "http://ywwhack-notebook.daoapp.io/login"
+  let signup = "http://ywwhack-notebook.daoapp.io/signup"
+  let searchUser = "http://ywwhack-notebook.daoapp.io/search_user"
+  let addGroupMember = "http://ywwhack-notebook.daoapp.io/add_group_member"
+  let createGroup = "http://ywwhack-notebook.daoapp.io/create_group"
+  let getAllGroups = "http://ywwhack-notebook.daoapp.io/get_all_groups"
+  let getGroupDetail = "http://ywwhack-notebook.daoapp.io/get_group_detail"
+  let addNoteToGroup = "http://ywwhack-notebook.daoapp.io/add_note_to_group"
+}
+
 struct URLManager {
-  static let urlType = URLType.Development
+  static let urlType = URLType.Production
   
   private static var urls: URLs {
     switch urlType {
     case .Development: return DevelopmentURLs()
-    case .Distribution: return DevelopmentURLs() // TODO: - Replace the with real host url
+    case .Production: return ProductionURLs() // TODO: - Replace the with real host url
     }
   }
   

@@ -130,7 +130,6 @@ class GroupListViewController: UITableViewController {
     case .BothLogoutAndGroupsSection:
       if indexPath.section == 0 {
         cell = tableView.dequeueReusableCellWithIdentifier("GroupCell", forIndexPath: indexPath)
-        
         cell.textLabel?.text = groups[indexPath.row].name
       }else {
         cell = cellForLogoutAtIndexPath(indexPath)

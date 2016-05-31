@@ -11,7 +11,7 @@ import UIKit
 class GroupDetailViewController: UITableViewController {
   
   var groupInfo: Group!
-  var sharedNotes = [String]()
+  var sharedNotes = [[String: AnyObject]]()
   var members = [String]()
   
   override func viewDidLoad() {
@@ -24,7 +24,8 @@ class GroupDetailViewController: UITableViewController {
         guard let data = result["data"] as? [String: AnyObject], notes = data["notes"] as? [[String: AnyObject]], members = data["members"] as? [String] else {
           return
         }
-        self.sharedNotes = notes.map { note in note["content"] as! String }
+        print(notes)
+        self.sharedNotes = notes
         self.members = members
         self.tableView.reloadData()
       case .Failed(let reason):
@@ -54,7 +55,9 @@ class GroupDetailViewController: UITableViewController {
       }
     }else {
       cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath)
-      cell.textLabel?.text = sharedNotes[indexPath.row]
+      
+      cell.textLabel?.text = sharedNotes[indexPath.row]["content"] as? String
+      cell.detailTextLabel?.text = sharedNotes[indexPath.row]["ownername"] as? String
     }
     
     return cell

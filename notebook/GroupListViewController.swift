@@ -23,7 +23,11 @@ class GroupListViewController: UITableViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    updateUI()
+    if dataModel.username != nil {
+      updateUI()
+    } else {
+      switchToLoginViewController()
+    }
   }
   
   @IBAction func addGroup(sender: UIBarButtonItem) {
@@ -58,22 +62,20 @@ class GroupListViewController: UITableViewController {
   }
   
   private func updateUI() {
-    if dataModel.username != nil {
-      RemoteResource.getAllGroups { requestResult in
-        switch requestResult {
-        case .Success(let result):
-          guard let groups = result["groups"] as? [[String: AnyObject]] else {
-            return
-          }
-          self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
-          }
-          if !groups.isEmpty {
-            self.sectionInfo = .BothLogoutAndGroupsSection
-          }
-          self.tableView.reloadData()
-        case .Failed(let reason):
-          print(reason)
+    RemoteResource.getAllGroups { requestResult in
+      switch requestResult {
+      case .Success(let result):
+        guard let groups = result["groups"] as? [[String: AnyObject]] else {
+          return
         }
+        self.groups = groups.map { group in Group(name: group["name"] as! String, id: group["id"] as! String)
+        }
+        if !groups.isEmpty {
+          self.sectionInfo = .BothLogoutAndGroupsSection
+        }
+        self.tableView.reloadData()
+      case .Failed(let reason):
+        print(reason)
       }
     }
   }

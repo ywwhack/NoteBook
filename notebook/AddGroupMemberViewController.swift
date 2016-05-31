@@ -29,6 +29,7 @@ class AddGroupMemberViewController: UITableViewController {
   
   @IBAction func addGroupMember(sender: UIButton) {
     let memeberLabel = sender.superview?.viewWithTag(1000) as! UILabel
+    sender.enabled = false
     RemoteResource.addMember(memeberLabel.text!, ToGroup: groupId) { requestResult in
       switch requestResult {
       case .Success:

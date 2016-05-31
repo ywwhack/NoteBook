@@ -24,7 +24,6 @@ class GroupDetailViewController: UITableViewController {
         guard let data = result["data"] as? [String: AnyObject], notes = data["notes"] as? [[String: AnyObject]], members = data["members"] as? [String] else {
           return
         }
-        print(notes)
         self.sharedNotes = notes
         self.members = members
         self.tableView.reloadData()
